@@ -6,7 +6,8 @@ package riverdalerobotics;
 
 /**
  *
- * @author Morrise
+ * @author Matt Morrise
+ * 
  */
 public class Timer
 {
