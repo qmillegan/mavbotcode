@@ -1,6 +1,6 @@
 package riverdalerobotics;
 
-public class MavBot extends SimpleRobot
+public class PandaBot extends SimpleRobot
 {
     
     Joystick m_leftJoystick;

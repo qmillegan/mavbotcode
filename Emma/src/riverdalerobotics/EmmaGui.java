@@ -384,7 +384,7 @@ public class EmmaGui extends javax.swing.JFrame
                 m_emmaGui = new EmmaGui();
                 m_emmaGui.setVisible(true);
                 // create the robot thread
-                MavBot robot = new MavBot();
+                PandaBot robot = new PandaBot();
                 (new Thread(robot)).start();
             }
         });
