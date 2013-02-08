@@ -38,18 +38,17 @@ public class PandaBot extends SimpleRobot
         
     }
 
-            //give the drive tra
     @Override
     public void operatorControl() 
     {
-        while(true) {       
+        while(isOperatorControl())
+        {       
+            //give the drive train a turn
             pandaDrive.drive();
             //give the lifter a turn
-            //give the shooter a turn
 	    pandaLift.step();
-	    pandaShoot.step();
-       
-            
+            //give the shooter a turn
+	    pandaShoot.step();  
         }
     }
 }

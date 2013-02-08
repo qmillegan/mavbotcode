@@ -51,7 +51,7 @@ public class SimpleRobot extends Thread
 
         public boolean isOperatorControl()
     {
-        return EmmaGui.m_emmaGui.getAutonomous();
+        return EmmaGui.m_emmaGui.getOperatorControl();
     }
 
     public boolean  isDisabled()
@@ -72,25 +72,38 @@ public class SimpleRobot extends Thread
         robotMain();
         robotInit();
         int cnt = 0;
+        double startTime = Timer.get();
+        int lastState = 0;
         while (true) 
         {
             Timer.delay(0.01);
+            double curTime = Timer.get() - startTime;
             if (isDisabled()) 
-            {
+            {               
+                EmmaGui.m_emmaGui.setFeedback("Disabled " + curTime);
                 disabled();
-                EmmaGui.m_emmaGui.setFeedback("Disabled " + cnt++);
+                lastState = 0;
             } 
             else if (isAutonomous()) 
             {
+                EmmaGui.m_emmaGui.setFeedback("Autonomous " + curTime);
                 autonomous();
-                EmmaGui.m_emmaGui.setFeedback("Autonomous " + cnt++);
+                lastState = 1;
             } 
             else 
             {
+                EmmaGui.m_emmaGui.setFeedback("Teleop " + curTime);
+                if (lastState != 2)
+                    getWatchdog().feed();
                 operatorControl();
-                EmmaGui.m_emmaGui.setFeedback("Teleop " + cnt++);
-            }
+                lastState = 2;
+           }
         } /* while loop */
+    }
+    
+    Watchdog getWatchdog()
+    {
+        return Watchdog.getInstance();
     }
     
     @Override

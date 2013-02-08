@@ -21,4 +21,10 @@ public class Timer
          {
          }
     }
+    
+    static double get()
+    {
+        double time = ((double) System.currentTimeMillis())/1000.0;
+        return time;
+    }
 }
