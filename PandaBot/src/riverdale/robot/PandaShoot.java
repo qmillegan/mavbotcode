@@ -16,31 +16,28 @@ import edu.wpi.first.wpilibj.Timer;
  * @author FIRST
  */
 public class PandaShoot {
-    private Jaguar jagShoot;
-    private int port;
+    private Jaguar rotaryJag;
+    private Jaguar hopperJag;
+    private int joystickPort;
     //private GenericHID joystick;
     //private int shootButton = 1;
     //private int port = 1;
     
     //JoystickButton button = new JoystickButton(joystick, shootButton);
     
-    PandaShoot(Jaguar jagShoot, int port){
-        this.jagShoot = jagShoot;
-	this.port = port;
+    PandaShoot(Jaguar rotaryJag, Jaguar hopperJag, int joystickPort){
+        this.rotaryJag = rotaryJag;
+	this.hopperJag = hopperJag;
+	this.joystickPort = joystickPort;
     }
     
-    Joystick joystick = new Joystick(port);
+    Joystick joystick = new Joystick(joystickPort);
     
-    public void testState() {
+    public void shoot() {
 	if (joystick.getTrigger()) {
-	    jagShoot.set(0.9);
-	    Timer.delay(1000);
-	    jagShoot.stopMotor();
+	    rotaryJag.set(0.9);
+	    Timer.delay(1000);		    //cant use timer.delays 
+	    rotaryJag.stopMotor();
 	}
-    }
-    public void shoot(){ //sample code, change
-        jagShoot.set(0.9);
-        Timer.delay(1000);
-        jagShoot.stopMotor();
     }
 }
