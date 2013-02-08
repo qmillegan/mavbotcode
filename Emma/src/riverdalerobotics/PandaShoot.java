@@ -11,12 +11,15 @@ package riverdalerobotics;
 public class PandaShoot {
     private Jaguar rotaryJag;
     private Jaguar hopperJag;
-    private int joystickPort;
+    private Joystick joystick;
 
-    PandaShoot(Jaguar rotaryJag, Jaguar hopperJag, int joystickPort){
+    PandaShoot(Jaguar rotaryJag, Jaguar hopperJag, Joystick joystick){
         this.rotaryJag = rotaryJag;
 	this.hopperJag = hopperJag;
-	this.joystickPort = joystickPort;
+	this.joystick = joystick;
     }
     
+    public void step() {
+	
+    }
 }

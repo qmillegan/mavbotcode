@@ -3,24 +3,33 @@ package riverdalerobotics;
 public class PandaBot extends SimpleRobot
 {
     
-    Joystick m_leftJoystick;
-    Joystick m_rightJoystick;
+    Joystick m_driveJoystick; //joystick 1...primarily used for driving
+    Joystick m_shootJoystick; //joystick 2...used for shooting
     Jaguar m_leftFrontMotor;
     Jaguar m_rightFrontMotor;
     Jaguar m_leftRearMotor;
     Jaguar m_rightRearMotor;
+    Jaguar m_liftLeftJag, m_liftRightJag, m_shootRotary, m_shootHopper;
+    PandaLift pandaLift;
     PandaDrive pandaDrive;
+    PandaShoot pandaShoot;
     
     @Override
     protected void robotInit() 
     {
-        m_leftJoystick = new Joystick(1);
-        m_rightJoystick = new Joystick(2);
+        m_driveJoystick = new Joystick(1);
+        m_shootJoystick = new Joystick(2);
         m_leftFrontMotor = new Jaguar(1);
         m_rightFrontMotor = new Jaguar(2);
-        m_leftRearMotor = new Jaguar(3);
-        m_rightRearMotor = new Jaguar(4);   
-        pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_leftJoystick);
+       
+	m_liftLeftJag = new Jaguar(5);
+	m_liftRightJag = new Jaguar(6);
+	
+	m_shootRotary = new Jaguar(7);
+	m_shootHopper = new Jaguar(8);
+        pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
+	pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
+	pandaShoot = new PandaShoot(m_shootRotary, m_shootHopper, m_shootJoystick);
     }
     
     @Override
@@ -29,14 +38,16 @@ public class PandaBot extends SimpleRobot
         
     }
 
+            //give the drive tra
     @Override
     public void operatorControl() 
     {
-        while(true){
-            //give the drive train a turn
+        while(true) {       
             pandaDrive.drive();
             //give the lifter a turn
             //give the shooter a turn
+	    pandaLift.step();
+	    pandaShoot.step();
        
             
         }
