@@ -11,6 +11,8 @@ package riverdalerobotics;
  */
 public class Timer
 {
+    
+    double m_startTime = 0;
     static void delay(double time)
     {
          try
@@ -22,9 +24,15 @@ public class Timer
          }
     }
     
-    static double get()
+    void start()
     {
-        double time = ((double) System.currentTimeMillis())/1000.0;
-        return time;
+        m_startTime = ((double) System.currentTimeMillis());
     }
+    
+    double get()
+    {
+        double time = ((double) System.currentTimeMillis());
+        return time-m_startTime;
+    }
+    
 }

@@ -71,28 +71,29 @@ public class SimpleRobot extends Thread
     {
         robotMain();
         robotInit();
+        Timer timer = new Timer();
+        timer.start();
         int cnt = 0;
-        double startTime = Timer.get();
         int lastState = 0;
         while (true) 
         {
             Timer.delay(0.01);
-            Double curTime = Timer.get() - startTime;
+            Double curTime = timer.get();
             if (isDisabled()) 
             {               
-                EmmaGui.m_emmaGui.setFeedback(String.format( "Disabled %.2f", curTime));
+                EmmaGui.m_emmaGui.setFeedback(String.format( "Disabled %.2f", curTime/1000));
                 disabled();
                 lastState = 0;
             } 
             else if (isAutonomous()) 
             {
-                EmmaGui.m_emmaGui.setFeedback(String.format( "Autonomous %.2f", curTime));
+                EmmaGui.m_emmaGui.setFeedback(String.format( "Autonomous %.2f", curTime/1000));
                 autonomous();
                 lastState = 1;
             } 
             else 
             {
-                EmmaGui.m_emmaGui.setFeedback(String.format( "Teleop %.2f", curTime));
+                EmmaGui.m_emmaGui.setFeedback(String.format( "Teleop %.2f", curTime/1000));
                 if (lastState != 2)
                     getWatchdog().feed();
                 operatorControl();

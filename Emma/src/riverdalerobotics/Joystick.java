@@ -28,7 +28,7 @@ public class Joystick
 
     public boolean getRawButton(final int button) 
     {
-        return m_buttons[button].isSelected();
+        return m_buttons[button-1].isSelected();
     }
     
 
