@@ -14,7 +14,9 @@ public class PandaDrive {
     private Timer timer;
     double lastTime = 0;
     double lastSpeed = 0;
- 
+    double reportAccel = 0;
+    double accel = 0;
+    
     public PandaDrive(Jaguar jagLeft, Jaguar jagRight, Joystick joystick){
         this.joystick = joystick;
         this.jagLeft = jagLeft;
@@ -23,18 +25,27 @@ public class PandaDrive {
         timer.start();
     }
     public void drive(){
-        final double maxAccel = 2.5;
+        final double maxAccel = 0.06;
         double speed = joystick.getY(); 
         double time = timer.get();
+        //acceleration calculation, etc.
         double timeDif = time-lastTime;
         double speedDif = speed-lastSpeed;
-        double accel = speedDif/timeDif;
-        lastTime = time;
-        lastSpeed = speed;
+        accel = speedDif/timeDif;
+        if(timeDif = 0 && speedDif = 0)
+            accel = 0;
+        if(Math.abs(accel) > reportAccel){
+            EmmaGui.m_emmaGui.setFeedback(String.format( "Acceleration %.2f",accel));
+            reportAccel = Math.abs(accel);
+        }
+        //checking if the acceleration is too high
         if(Math.abs(accel) > maxAccel){
-            double newSpeed = maxAccel*timeDif;
+            double newTimeDif = maxAccel*timeDif;
+            double newSpeed = newTimeDif+lastSpeed;
             speed = newSpeed;
         } 
+        lastTime = time;
+        lastSpeed = speed;
         //jagRight.set(speed);
         //jagLeft.set(speed);
         arcadeDrive(speed, joystick.getX());
