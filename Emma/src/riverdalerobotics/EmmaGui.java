@@ -41,18 +41,22 @@ public class EmmaGui extends javax.swing.JFrame
         m_rightJoystickButton1 = new javax.swing.JToggleButton();
         m_rightJoystickButton2 = new javax.swing.JToggleButton();
         m_rightJoystickButtonsLabel = new javax.swing.JLabel();
-        m_leftFrontMotorSpeedLabel = new javax.swing.JLabel();
-        m_leftFrontMotorSpeedText = new javax.swing.JTextField();
-        m_rightFrontMotorSpeedLabel = new javax.swing.JLabel();
-        m_rightFrontMotorSpeedText = new javax.swing.JTextField();
-        m_rightRearMotorSpeedLabel = new javax.swing.JLabel();
-        m_rightRearMotorSpeedText = new javax.swing.JTextField();
-        m_leftRearMotorSpeedLabel = new javax.swing.JLabel();
-        m_leftRearMotorSpeedText = new javax.swing.JTextField();
+        m_leftWheelJagLabel = new javax.swing.JLabel();
+        m_leftWheelJagText = new javax.swing.JTextField();
+        m_rightWheelJagLabel = new javax.swing.JLabel();
+        m_rightWheelJagText = new javax.swing.JTextField();
+        m_rightLiftJagLabel = new javax.swing.JLabel();
+        m_rightLiftJagText = new javax.swing.JTextField();
+        m_leftLiftJagLabel = new javax.swing.JLabel();
+        m_leftLiftJagText = new javax.swing.JTextField();
         m_disabledModeRadio = new javax.swing.JRadioButton();
         m_autonomousModeRadio = new javax.swing.JRadioButton();
         m_teleopModeRadio = new javax.swing.JRadioButton();
         m_feedbackText = new javax.swing.JTextField();
+        m_shootRotaryJagText = new javax.swing.JTextField();
+        m_shootHopperJagLabel = new javax.swing.JLabel();
+        m_shootHopperJagText = new javax.swing.JTextField();
+        m_shootRotaryJagLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Emma - Riverdale Robotics Emulator");
@@ -141,21 +145,30 @@ public class EmmaGui extends javax.swing.JFrame
 
         m_rightJoystickButtonsLabel.setText("Right Joystick Buttons");
 
-        m_leftFrontMotorSpeedLabel.setText("Left Front Motor Speed");
+        m_leftWheelJagLabel.setLabelFor(this);
+        m_leftWheelJagLabel.setText("Left Wheel Jag");
 
-        m_leftFrontMotorSpeedText.setText("jTextField1");
+        m_leftWheelJagText.setText("jTextField1");
 
-        m_rightFrontMotorSpeedLabel.setText("Right Front Motor Speed");
+        m_rightWheelJagLabel.setText("Right Wheel Jag");
+        m_rightWheelJagLabel.setToolTipText("");
 
-        m_rightFrontMotorSpeedText.setText("jTextField1");
+        m_rightWheelJagText.setText("jTextField1");
 
-        m_rightRearMotorSpeedLabel.setText("Right Rear Motor Speed");
+        m_rightLiftJagLabel.setText("Right Lift Jag");
 
-        m_rightRearMotorSpeedText.setText("jTextField1");
+        m_rightLiftJagText.setText("jTextField1");
 
-        m_leftRearMotorSpeedLabel.setText("Left Rear Motor Speed");
+        m_leftLiftJagLabel.setText("Left Lift Jag");
 
-        m_leftRearMotorSpeedText.setText("jTextField1");
+        m_leftLiftJagText.setText("jTextField1");
+        m_leftLiftJagText.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                m_leftLiftJagTextActionPerformed(evt);
+            }
+        });
 
         m_modeGroup.add(m_disabledModeRadio);
         m_disabledModeRadio.setSelected(true);
@@ -169,40 +182,71 @@ public class EmmaGui extends javax.swing.JFrame
 
         m_feedbackText.setText("jTextField1");
 
+        m_shootRotaryJagText.setText("jTextField1");
+
+        m_shootHopperJagLabel.setText("Shoot Hopper Jag");
+
+        m_shootHopperJagText.setText("jTextField1");
+
+        m_shootRotaryJagLabel.setText("Shoot Rotary Jag");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(m_leftJoystickYLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(m_leftJoystickYSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(m_leftJoystickXLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(m_leftJoystickXSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(m_disabledModeRadio)
+                .addGap(10, 10, 10)
+                .addComponent(m_autonomousModeRadio)
+                .addGap(10, 10, 10)
+                .addComponent(m_teleopModeRadio)
+                .addGap(18, 18, 18)
+                .addComponent(m_feedbackText, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(m_shootRotaryJagLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(m_shootRotaryJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(m_leftJoystickButtonsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(m_leftJoystickYLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(m_leftJoystickYSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(m_leftJoystickXLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(m_leftJoystickXSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(m_leftJoystickButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(m_leftJoystickButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(m_leftJoystickButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(m_leftJoystickButton4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(m_leftFrontMotorSpeedLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(m_leftFrontMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(m_leftJoystickButtonsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(m_leftJoystickButton1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(m_leftJoystickButton2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(m_leftJoystickButton3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(m_leftJoystickButton4))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(m_leftLiftJagLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(m_leftLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(m_leftWheelJagLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(m_leftWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(m_rightJoystickXSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -213,7 +257,6 @@ public class EmmaGui extends javax.swing.JFrame
                                 .addComponent(m_rightJoystickYLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
@@ -227,30 +270,22 @@ public class EmmaGui extends javax.swing.JFrame
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(m_rightJoystickButton4))
                             .addComponent(m_rightJoystickYSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(m_rightRearMotorSpeedLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(m_rightRearMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(m_rightFrontMotorSpeedLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(m_rightFrontMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(m_rightLiftJagLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(m_rightLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(m_rightWheelJagLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(m_rightWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(m_shootHopperJagLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(m_shootHopperJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(179, 179, 179))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(m_leftRearMotorSpeedLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(m_leftRearMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(m_disabledModeRadio)
-                .addGap(10, 10, 10)
-                .addComponent(m_autonomousModeRadio)
-                .addGap(10, 10, 10)
-                .addComponent(m_teleopModeRadio)
-                .addGap(18, 18, 18)
-                .addComponent(m_feedbackText, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,17 +333,23 @@ public class EmmaGui extends javax.swing.JFrame
                             .addComponent(m_leftJoystickButton4))))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(m_leftFrontMotorSpeedLabel)
-                    .addComponent(m_leftFrontMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_rightFrontMotorSpeedLabel)
-                    .addComponent(m_rightFrontMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(m_leftWheelJagLabel)
+                    .addComponent(m_leftWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m_rightWheelJagLabel)
+                    .addComponent(m_rightWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(m_leftRearMotorSpeedLabel)
-                    .addComponent(m_leftRearMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_rightRearMotorSpeedLabel)
-                    .addComponent(m_rightRearMotorSpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(113, 113, 113))
+                    .addComponent(m_leftLiftJagLabel)
+                    .addComponent(m_leftLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m_rightLiftJagLabel)
+                    .addComponent(m_rightLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_shootRotaryJagLabel)
+                    .addComponent(m_shootHopperJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m_shootHopperJagLabel)
+                    .addComponent(m_shootRotaryJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87))
         );
 
         pack();
@@ -345,6 +386,11 @@ public class EmmaGui extends javax.swing.JFrame
     private void m_rightJoystickButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_rightJoystickButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_m_rightJoystickButton2ActionPerformed
+
+    private void m_leftLiftJagTextActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_leftLiftJagTextActionPerformed
+    {//GEN-HEADEREND:event_m_leftLiftJagTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_m_leftLiftJagTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,8 +440,6 @@ public class EmmaGui extends javax.swing.JFrame
     private javax.swing.JRadioButton m_autonomousModeRadio;
     private javax.swing.JRadioButton m_disabledModeRadio;
     private javax.swing.JTextField m_feedbackText;
-    private javax.swing.JLabel m_leftFrontMotorSpeedLabel;
-    private javax.swing.JTextField m_leftFrontMotorSpeedText;
     private javax.swing.JToggleButton m_leftJoystickButton1;
     private javax.swing.JToggleButton m_leftJoystickButton2;
     private javax.swing.JToggleButton m_leftJoystickButton3;
@@ -405,11 +449,11 @@ public class EmmaGui extends javax.swing.JFrame
     private javax.swing.JSlider m_leftJoystickXSlider;
     private javax.swing.JLabel m_leftJoystickYLabel;
     private javax.swing.JSlider m_leftJoystickYSlider;
-    private javax.swing.JLabel m_leftRearMotorSpeedLabel;
-    private javax.swing.JTextField m_leftRearMotorSpeedText;
+    private javax.swing.JLabel m_leftLiftJagLabel;
+    private javax.swing.JTextField m_leftLiftJagText;
+    private javax.swing.JLabel m_leftWheelJagLabel;
+    private javax.swing.JTextField m_leftWheelJagText;
     private javax.swing.ButtonGroup m_modeGroup;
-    private javax.swing.JLabel m_rightFrontMotorSpeedLabel;
-    private javax.swing.JTextField m_rightFrontMotorSpeedText;
     private javax.swing.JToggleButton m_rightJoystickButton1;
     private javax.swing.JToggleButton m_rightJoystickButton2;
     private javax.swing.JToggleButton m_rightJoystickButton3;
@@ -419,8 +463,14 @@ public class EmmaGui extends javax.swing.JFrame
     private javax.swing.JSlider m_rightJoystickXSlider;
     private javax.swing.JLabel m_rightJoystickYLabel;
     private javax.swing.JSlider m_rightJoystickYSlider;
-    private javax.swing.JLabel m_rightRearMotorSpeedLabel;
-    private javax.swing.JTextField m_rightRearMotorSpeedText;
+    private javax.swing.JLabel m_rightLiftJagLabel;
+    private javax.swing.JTextField m_rightLiftJagText;
+    private javax.swing.JLabel m_rightWheelJagLabel;
+    private javax.swing.JTextField m_rightWheelJagText;
+    private javax.swing.JLabel m_shootHopperJagLabel;
+    private javax.swing.JTextField m_shootHopperJagText;
+    private javax.swing.JLabel m_shootRotaryJagLabel;
+    private javax.swing.JTextField m_shootRotaryJagText;
     private javax.swing.JRadioButton m_teleopModeRadio;
     // End of variables declaration//GEN-END:variables
 
@@ -479,17 +529,29 @@ public class EmmaGui extends javax.swing.JFrame
     {
         if (channel == 1)
         {
-            return m_leftFrontMotorSpeedText;
+            return m_leftWheelJagText;
         }
         else if (channel == 2)
         {
-            return m_rightFrontMotorSpeedText;
+            return m_rightWheelJagText;
         }
-        else if (channel == 3)
+        else if (channel == 5)
         {
-            return m_leftRearMotorSpeedText;
+            return m_leftLiftJagText;
         }
-        return m_rightRearMotorSpeedText;
+        else if (channel == 6)
+        {
+            return m_rightLiftJagText;
+        }
+        else if (channel == 7)
+        {
+            return m_shootRotaryJagText;
+        }
+        else if (channel == 8)
+        {
+            return m_shootHopperJagText;
+        }
+        return null;
     }
 
 }

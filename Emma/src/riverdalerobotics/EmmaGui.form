@@ -28,43 +28,72 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="m_leftJoystickYLabel" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="m_leftJoystickYSlider" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="m_leftJoystickXLabel" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="m_leftJoystickXSlider" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="m_disabledModeRadio" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Component id="m_autonomousModeRadio" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Component id="m_teleopModeRadio" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="m_feedbackText" min="-2" pref="162" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              <Component id="m_leftJoystickButtonsLabel" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="m_shootRotaryJagLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="m_shootRotaryJagText" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="m_leftJoystickYLabel" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="m_leftJoystickYSlider" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="m_leftJoystickXLabel" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="m_leftJoystickXSlider" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="m_leftJoystickButton1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="m_leftJoystickButton2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="m_leftJoystickButton3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="m_leftJoystickButton4" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="m_leftFrontMotorSpeedLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="m_leftFrontMotorSpeedText" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Component id="m_leftJoystickButtonsLabel" min="-2" pref="130" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="m_leftJoystickButton1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="m_leftJoystickButton2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="m_leftJoystickButton3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="m_leftJoystickButton4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="m_leftLiftJagLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="m_leftLiftJagText" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="m_leftWheelJagLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="m_leftWheelJagText" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="m_rightJoystickXSlider" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -79,7 +108,6 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -95,38 +123,30 @@
                               <Component id="m_rightJoystickButton4" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="m_rightJoystickYSlider" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="m_rightRearMotorSpeedLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="m_rightRearMotorSpeedText" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="m_rightFrontMotorSpeedLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="m_rightFrontMotorSpeedText" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="m_rightLiftJagLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="m_rightLiftJagText" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="m_rightWheelJagLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="m_rightWheelJagText" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="m_shootHopperJagLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="m_shootHopperJagText" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="m_leftRearMotorSpeedLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="m_leftRearMotorSpeedText" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="m_disabledModeRadio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="m_autonomousModeRadio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="m_teleopModeRadio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="m_feedbackText" min="-2" pref="162" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -187,19 +207,26 @@
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="m_leftFrontMotorSpeedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="m_leftFrontMotorSpeedText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="m_rightFrontMotorSpeedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="m_rightFrontMotorSpeedText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_leftWheelJagLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_leftWheelJagText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_rightWheelJagLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_rightWheelJagText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="m_leftRearMotorSpeedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="m_leftRearMotorSpeedText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="m_rightRearMotorSpeedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="m_rightRearMotorSpeedText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_leftLiftJagLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_leftLiftJagText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_rightLiftJagLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_rightLiftJagText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="m_shootRotaryJagLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_shootHopperJagText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_shootHopperJagLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_shootRotaryJagText" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -307,45 +334,52 @@
         <Property name="text" type="java.lang.String" value="Right Joystick Buttons"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="m_leftFrontMotorSpeedLabel">
+    <Component class="javax.swing.JLabel" name="m_leftWheelJagLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Left Front Motor Speed"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="Form"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Left Wheel Jag"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="m_leftFrontMotorSpeedText">
+    <Component class="javax.swing.JTextField" name="m_leftWheelJagText">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="m_rightFrontMotorSpeedLabel">
+    <Component class="javax.swing.JLabel" name="m_rightWheelJagLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Right Front Motor Speed"/>
+        <Property name="text" type="java.lang.String" value="Right Wheel Jag"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="m_rightFrontMotorSpeedText">
+    <Component class="javax.swing.JTextField" name="m_rightWheelJagText">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="m_rightRearMotorSpeedLabel">
+    <Component class="javax.swing.JLabel" name="m_rightLiftJagLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Right Rear Motor Speed"/>
+        <Property name="text" type="java.lang.String" value="Right Lift Jag"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="m_rightRearMotorSpeedText">
+    <Component class="javax.swing.JTextField" name="m_rightLiftJagText">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="m_leftRearMotorSpeedLabel">
+    <Component class="javax.swing.JLabel" name="m_leftLiftJagLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Left Rear Motor Speed"/>
+        <Property name="text" type="java.lang.String" value="Left Lift Jag"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="m_leftRearMotorSpeedText">
+    <Component class="javax.swing.JTextField" name="m_leftLiftJagText">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_leftLiftJagTextActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="m_disabledModeRadio">
       <Properties>
@@ -375,6 +409,26 @@
     <Component class="javax.swing.JTextField" name="m_feedbackText">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="m_shootRotaryJagText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="m_shootHopperJagLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Shoot Hopper Jag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="m_shootHopperJagText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="m_shootRotaryJagLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Shoot Rotary Jag"/>
       </Properties>
     </Component>
   </SubComponents>
