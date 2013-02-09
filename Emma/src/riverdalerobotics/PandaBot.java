@@ -43,6 +43,8 @@ public class PandaBot extends SimpleRobot
     {
         while(isOperatorControl())
         {       
+            getWatchdog().feed();
+            Timer.delay(.01);
             //give the drive train a turn
             pandaDrive.drive();
             //give the lifter a turn
