@@ -13,6 +13,7 @@ public class PandaBot extends SimpleRobot
     PandaLift pandaLift;
     PandaDrive pandaDrive;
     PandaShoot pandaShoot;
+    PandaDock pandaDock; 
     
     @Override
     protected void robotInit() 
@@ -30,6 +31,7 @@ public class PandaBot extends SimpleRobot
         pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
 	pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
 	pandaShoot = new PandaShoot(m_shootRotary, m_shootHopper, m_shootJoystick);
+        pandaDock = new PandaDock (m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
     }
     
     @Override
@@ -51,6 +53,8 @@ public class PandaBot extends SimpleRobot
 	    pandaLift.step();
             //give the shooter a turn
 	    pandaShoot.step(); 
+            //give the docker a turn 
+            pandaDock.step(); 
         }
     }
 }
