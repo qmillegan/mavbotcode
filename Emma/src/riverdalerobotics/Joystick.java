@@ -31,6 +31,11 @@ public class Joystick
         return m_buttons[button-1].isSelected();
     }
     
+    
+    public boolean getTrigger() 
+    {
+        return true;
+    }
 
     /**
      * Get the X value of the joystick.
