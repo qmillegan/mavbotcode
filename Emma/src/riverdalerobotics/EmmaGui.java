@@ -1,4 +1,4 @@
-package riverdale.robot;
+package riverdalerobotics;
 
 public class EmmaGui extends javax.swing.JFrame 
 {

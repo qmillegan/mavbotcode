@@ -1,4 +1,4 @@
-package riverdale.robot;
+package riverdalerobotics;
 
 /**
  * Handle input from standard Joysticks connected to the Driver Station.
