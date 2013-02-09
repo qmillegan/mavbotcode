@@ -1,4 +1,4 @@
-package riverdalerobotics;
+package riverdale.robot;
 
 public class PandaBot extends SimpleRobot
 {
@@ -48,7 +48,7 @@ public class PandaBot extends SimpleRobot
             //give the lifter a turn
 	    pandaLift.step();
             //give the shooter a turn
-	    pandaShoot.step();  
+	    pandaShoot.step();
         }
     }
 }

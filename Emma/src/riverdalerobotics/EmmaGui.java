@@ -1,4 +1,4 @@
-package riverdalerobotics;
+package riverdale.robot;
 
 public class EmmaGui extends javax.swing.JFrame 
 {
@@ -19,8 +19,7 @@ public class EmmaGui extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         m_modeGroup = new javax.swing.ButtonGroup();
         m_rightJoystickXSlider = new javax.swing.JSlider();
@@ -72,73 +71,57 @@ public class EmmaGui extends javax.swing.JFrame
         m_leftJoystickButtonsLabel.setText("Left Joystick Buttons");
 
         m_leftJoystickButton1.setText("1");
-        m_leftJoystickButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_leftJoystickButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_leftJoystickButton1ActionPerformed(evt);
             }
         });
 
         m_leftJoystickButton2.setText("2");
-        m_leftJoystickButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_leftJoystickButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_leftJoystickButton2ActionPerformed(evt);
             }
         });
 
         m_leftJoystickButton3.setText("3");
-        m_leftJoystickButton3.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_leftJoystickButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_leftJoystickButton3ActionPerformed(evt);
             }
         });
 
         m_leftJoystickButton4.setText("4");
-        m_leftJoystickButton4.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_leftJoystickButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_leftJoystickButton4ActionPerformed(evt);
             }
         });
 
         m_rightJoystickButton3.setText("3");
-        m_rightJoystickButton3.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_rightJoystickButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_rightJoystickButton3ActionPerformed(evt);
             }
         });
 
         m_rightJoystickButton4.setText("4");
-        m_rightJoystickButton4.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_rightJoystickButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_rightJoystickButton4ActionPerformed(evt);
             }
         });
 
         m_rightJoystickButton1.setText("1");
-        m_rightJoystickButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_rightJoystickButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_rightJoystickButton1ActionPerformed(evt);
             }
         });
 
         m_rightJoystickButton2.setText("2");
-        m_rightJoystickButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_rightJoystickButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_rightJoystickButton2ActionPerformed(evt);
             }
         });
@@ -162,10 +145,8 @@ public class EmmaGui extends javax.swing.JFrame
         m_leftLiftJagLabel.setText("Left Lift Jag");
 
         m_leftLiftJagText.setText("jTextField1");
-        m_leftLiftJagText.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        m_leftLiftJagText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 m_leftLiftJagTextActionPerformed(evt);
             }
         });

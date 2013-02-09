@@ -1,7 +1,7 @@
 /**
  * Panda Drive
  */
-package riverdalerobotics;
+package riverdale.robot;
 
 /**
  *
