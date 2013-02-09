@@ -7,12 +7,7 @@
 
 package riverdale.robot;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.DriverStationLCD;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SimpleRobot;
+import edu.wpi.first.wpilibj.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,7 +24,7 @@ public class PandaBot extends SimpleRobot {
     //private RobotDrive drivetrain;
     //private Joystick joystik;
     private DriverStationLCD lcd;
-    private Jaguar jagLeft, jagRight, jagLiftLeft, jagLiftRight, jagShoot;
+    private Jaguar jagLeft, jagRight, jagLiftLeft, jagLiftRight, jagShoot, rotaryJag, hopperJag;
     
     private RobotDrive train;
     private PandaDrive pandaDrive;
@@ -39,22 +34,23 @@ public class PandaBot extends SimpleRobot {
     private Joystick joystick;
     private Joystick joystick2;
     
-    private int upSwitchPort = 1; //fix numbers, for limit switches
+    private int upSwitchPort = 1; //TODO fix numbers for limit switches
     private int downSwitchPort = 2;
     
     public void robotInit(){
         jagLeft = new Jaguar(8);
         jagRight = new Jaguar(2); //initalize others...
-	
+	rotaryJag = new Jaguar(0); //TODO add real ports
+	hopperJag = new Jaguar(1); //TODO add real ports
         train = new RobotDrive(jagLeft, jagRight);
 	joystick = new Joystick(1);
 	joystick2 = new Joystick(2);
 	int joyPort = 1;
 	int joy2Port = 2;
 	
-	//pandaDrive = new PandaDrive(train, joystick);
-	//pandaLift = new PandaLift(jagLiftLeft, jagLiftRight, upSwitchPort, downSwitchPort, joy2Port);
-	//pandaShoot = new PandaShoot(jagShoot, joy2Port);
+	pandaDrive = new PandaDrive(train, joystick);
+	pandaLift = new PandaLift(jagLiftLeft, jagLiftRight, upSwitchPort, downSwitchPort, joy2Port);
+	pandaShoot = new PandaShoot(rotaryJag, hopperJag, joy2Port);
 	
 	//pandaAuto = new PandaAuto(pandaDrive, pandaShoot, pandaLift);
         
@@ -74,14 +70,17 @@ public class PandaBot extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-        runFromArcade();
+	PandaDrive.drive();
+	PandaLift.step();
+	PandaShoot.step();
+
     }
     
     public void runFromArcade(){
 	while(true){
 	    getWatchdog().feed();
             train.arcadeDrive(joystick.getY(), -joystick.getX()); //will be replaced by PandaDrive.arcadeDrive();
-	
+	    
             //String message = "Joystick: " + joystick.getX();
             //lcd.println(DriverStationLCD.Line.kUser2, 1, message);
             //lcd.updateLCD();

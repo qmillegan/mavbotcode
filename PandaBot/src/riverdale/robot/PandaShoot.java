@@ -4,12 +4,7 @@
  */
 package riverdale.robot;
 
-//import edu.wpi.first.wpilibj.DigitalInput;
-//import edu.wpi.first.wpilibj.GenericHID;
-//import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.*;
 
 /**
  *
@@ -33,10 +28,14 @@ public class PandaShoot {
     
     Joystick joystick = new Joystick(joystickPort);
     
+    public void step() {
+	
+    }
+    
     public void shoot() {
 	if (joystick.getTrigger()) {
 	    rotaryJag.set(0.9);
-	    Timer.delay(1000);		    //cant use timer.delays 
+	    Timer.delay(1000);		    //cant use timer.delays
 	    rotaryJag.stopMotor();
 	}
     }

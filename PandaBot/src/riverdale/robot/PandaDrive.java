@@ -4,9 +4,7 @@
  */
 package riverdale.robot;
 
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.*;
 
 /**
  *
@@ -22,7 +20,8 @@ public class PandaDrive {
         this.joystick = joystick;
     }
     
-    void arcadeDrive(){ //needs to be continually run as check - TODO make run in seperate thread???
+    void step(){  //formerly arcadeDrive()
+	//needs to be continually run as check - TODO make run in seperate thread???
         train.arcadeDrive(joystick.getY(), -joystick.getX()); //This is (hopefully) right
     }
 }

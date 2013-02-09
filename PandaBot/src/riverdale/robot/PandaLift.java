@@ -4,8 +4,7 @@
  */
 package riverdale.robot;
 
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.*;
 
 /**
  *
@@ -23,6 +22,11 @@ public class PandaLift {
 	this.jagLiftRight = jagLiftRightPort;
         upSwitch = new DigitalInput(upSwitchPort);
         downSwitch = new DigitalInput(downSwitchPort);
+    }
+    
+    public void step() {
+	
+	
     }
     
     public void lift(){
