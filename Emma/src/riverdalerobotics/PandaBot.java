@@ -15,32 +15,30 @@ public class PandaBot extends SimpleRobot
     PandaShoot pandaShoot;
     PandaDock pandaDock; 
     
-    @Override
     protected void robotInit() 
     {
         m_driveJoystick = new Joystick(1);
         m_shootJoystick = new Joystick(2);
-        m_leftFrontMotor = new Jaguar(1);
-        m_rightFrontMotor = new Jaguar(2);
+        m_leftFrontMotor = new Jaguar(2);
+        m_rightFrontMotor = new Jaguar(6);
        
-	m_liftLeftJag = new Jaguar(5);
-	m_liftRightJag = new Jaguar(6);
+	// TODO: Fix these next two lines
+	m_liftLeftJag = new Jaguar(1);
+	m_liftRightJag = new Jaguar(1);
 	
-	m_shootRotary = new Jaguar(7);
-	m_shootHopper = new Jaguar(8);
+	m_shootRotary = new Jaguar(8);
+	m_shootHopper = new Jaguar(10);
         pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
 	pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
 	pandaShoot = new PandaShoot(m_shootRotary, m_shootHopper, m_shootJoystick);
         pandaDock = new PandaDock (m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
     }
     
-    @Override
     public void autonomous() 
     {
         
     }
 
-    @Override
     public void operatorControl() 
     {
         while(isOperatorControl())
@@ -52,7 +50,7 @@ public class PandaBot extends SimpleRobot
             //give the lifter a turn
 	    pandaLift.step();
             //give the shooter a turn
-	    pandaShoot.step(); 
+	    pandaShoot.step();
             //give the docker a turn 
             pandaDock.step(); 
         }

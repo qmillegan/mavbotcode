@@ -6,10 +6,11 @@ package riverdalerobotics;
 
 import riverdalerobotics.*;
 
-/**
+/*
  *
- * @author FIRST
+ * @author Grant Vesely
  */
+
 public class PandaShoot {
     private Jaguar rotaryJag;
     private Jaguar hopperJag;
@@ -25,16 +26,17 @@ public class PandaShoot {
         this.rotaryJag = rotaryJag;
 	this.hopperJag = hopperJag;
 	this.joystick = joystick;
+	clock.start();
     }
     
     public void step() {
-	if (joystick.getTrigger() && !running) {
+	if (joystick.getRawButton(4) && !running) {
 	    // Start the shooting sequence
 	    running = true;
 	    timeStarted = clock.get();
 	    rotaryJag.set(0.9);
 	    hopperJag.set(1.0);
-	} else if (!joystick.getTrigger() && running) {
+	} else if (!joystick.getRawButton(4) && running) {
 	    // Stop the hopper motor and spin down the shooter motor
 	    hopperJag.set(0);
 	    if (spinDownTime > 0) {
