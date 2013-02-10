@@ -508,27 +508,27 @@ public class EmmaGui extends javax.swing.JFrame
     
     javax.swing.JTextField getJaguar(final int channel)
     {
-        if (channel == 1)
+        if (channel == 2)
         {
             return m_leftWheelJagText;
         }
-        else if (channel == 2)
+        else if (channel == 6)
         {
             return m_rightWheelJagText;
         }
-        else if (channel == 5)
+        else if (channel == 1)
         {
             return m_leftLiftJagText;
         }
-        else if (channel == 6)
+        else if (channel == 1)
         {
             return m_rightLiftJagText;
         }
-        else if (channel == 7)
+        else if (channel == 8)
         {
             return m_shootRotaryJagText;
         }
-        else if (channel == 8)
+        else if (channel == 10)
         {
             return m_shootHopperJagText;
         }
