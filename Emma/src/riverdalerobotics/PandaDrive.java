@@ -32,20 +32,21 @@ public class PandaDrive {
         double timeDif = time-lastTime;
         double speedDif = speed-lastSpeed;
         accel = speedDif/timeDif;
-        if(timeDif = 0 && speedDif = 0)
+        if(timeDif == 0 && speedDif == 0)
             accel = 0;
         if(Math.abs(accel) > reportAccel){
             EmmaGui.m_emmaGui.setFeedback(String.format( "Acceleration %.2f",accel));
             reportAccel = Math.abs(accel);
         }
-        //checking if the acceleration is too high
-        if(Math.abs(accel) > maxAccel){
-            double newTimeDif = maxAccel*timeDif;
-            double newSpeed = newTimeDif+lastSpeed;
-            speed = newSpeed;
-        } 
+        //checking to see if the acceleration is too high
+        double oldLastSpeed = lastSpeed;
         lastTime = time;
         lastSpeed = speed;
+        if(Math.abs(accel) > maxAccel){
+            double newTimeDif = maxAccel*timeDif;
+            double newSpeed = newTimeDif+oldLastSpeed;
+            speed = newSpeed;
+        } 
         //jagRight.set(speed);
         //jagLeft.set(speed);
         arcadeDrive(speed, joystick.getX());
