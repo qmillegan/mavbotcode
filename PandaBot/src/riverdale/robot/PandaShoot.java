@@ -60,8 +60,10 @@ public class PandaShoot {
 	if (trigger) {
 	    if (running) {
 		if (time > 0) {
+		    // Trigger pulled, hopper spinning, hopper timer not expired
 		    time -= clock.get();
 		} else {
+		    // Trigger pulled, hopper spinning, hopper timer expired
 		    hopperJag.set(0);
 		    running = false;
 		    delay = true;
@@ -70,14 +72,17 @@ public class PandaShoot {
 	    } else {
 		if (delay) {
 		    if (time > 0) {
+			// Trigger pulled, hopper off, delay timer not expired
 			time -= clock.get();
 		    } else {
+			// Trigger pulled, hopper off, delay timer expired
 			delay = false;
 			time = 500000;
 			hopperJag.set(1);
 			running = true;
 		    }
 		} else {
+		    // Trigger pulled, hopper off, delay off
 		    hopperJag.set(1);
 		    running = true;
 		    time = 500000;
@@ -86,18 +91,22 @@ public class PandaShoot {
 	} else {
 	    if (running) {
 		if (time > 0) {
+		    // Trigger released, hopper running, hopper timer not expired
 		    time -= clock.get();
 		} else {
+		    // Trigger released, hopper running, hopper timer expired
 		    hopperJag.set(0);
 		    running = false;
 		    time = 500000;
 		    delay = true;
 		}
 	    }
-	    if (delay) {
+	    if (delay) {    
 		if (time > 0) {
+		    // Trigger released, delay on, delay timer not expired
 		    time -= clock.get();
 		} else {
+		    // Trigger released, delay on, delay timer expired
 		    delay = false;
 		    time = 500000;
 		}
