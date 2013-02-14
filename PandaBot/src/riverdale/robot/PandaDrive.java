@@ -7,11 +7,11 @@ package riverdale.robot;
 import edu.wpi.first.wpilibj.*;
 
 /**
- *
+ * reer
  * 
  */
 public class PandaDrive {
-
+    
     private Joystick joystick;
     private Jaguar jagLeft, jagRight;
     private Timer timer;
@@ -19,6 +19,13 @@ public class PandaDrive {
     double lastSpeed = 0;
     double reportAccel = 0;
     double accel = 0;
+    RobotDrive drive;
+    double c_state;
+    double p_state;
+    double speed;
+    DriverStationLCD lcd;
+    int sc;
+    
     
     public PandaDrive(Jaguar jagLeft, Jaguar jagRight, Joystick joystick){
         this.joystick = joystick;
@@ -26,9 +33,20 @@ public class PandaDrive {
         this.jagRight = jagRight;
         timer = new Timer();
         timer.start();
+	
+	//logan's crutch
+	drive = new RobotDrive(jagLeft, jagRight);
+	
+	//quinnard's stuff
+	c_state =  0.0;
+	p_state = 0.0;
+	speed = 0.0;
+	//slowing coefficient..higher is slower
+	sc = 50;
     }
     public void drive(){
-        final double maxAccel = 0.06;
+        /*
+	final double maxAccel = 0.06;
         double speed = joystick.getY(); 
         double time = timer.get();
         //acceleration calculation, etc.
@@ -51,7 +69,32 @@ public class PandaDrive {
         } 
         //jagRight.set(speed);
         //jagLeft.set(speed);
+	 
         arcadeDrive(speed, joystick.getX());
+	*/
+	
+	//quinnard's controlled acceleration thing
+	//c_state = joystick y axis
+	
+	c_state =  joystick.getY();
+	//p_state = robot speed...let it approach c_state at a certain increment
+	p_state = p_state+((c_state-p_state)/sc);
+	speed = p_state;
+	//crioOut(speed+"");
+	
+	drive.setMaxOutput(0.5);
+	//get speed from joystick rotary controller thing
+	drive.setMaxOutput(1-((joystick.getTwist()+1)/2));
+	//check if it's turbo time
+	if (joystick.getTrigger() == true) {
+	    //fire lazors
+	    drive.setMaxOutput(5);
+	}
+	
+	
+	//logan's crutch...might want to use the (glorious) arcadeDrive function instead
+	drive.arcadeDrive(speed, -joystick.getX());
+
 }
     
 
@@ -100,4 +143,9 @@ public class PandaDrive {
          jagRight.set(rightMotorSpeed);
         jagLeft.set(leftMotorSpeed);
    }
+    public void crioOut(String out) {
+	lcd = DriverStationLCD.getInstance();
+	lcd.println(DriverStationLCD.Line.kUser2, 1, out);
+	lcd.updateLCD();
+    }
 }
