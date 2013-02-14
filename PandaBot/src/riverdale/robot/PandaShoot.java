@@ -16,13 +16,18 @@ public class PandaShoot {
     private Jaguar hopperJag;
     private Jaguar camJag;
     private Joystick joystick;
+    private boolean running = false;
+    private boolean delay = false;
+    private boolean trigger = false;
+    private double time = 5000000;
+    /*
+    private double delay = 1000000;
     private double timeStarted = 0;
-    private double delay;
-    DriverStationLCD lcd;
     // timeStarted tracks when the current shoot sequence started
     private double spinDownTime = 1;
     // spinDownTime tracks how long until the shooter motor needs to stop
     private boolean running = true;
+    */
     Timer clock = new Timer();
 
     PandaShoot(Jaguar rotaryJag, Jaguar hopperJag, Jaguar camJag, Joystick joystick) {
@@ -39,14 +44,64 @@ public class PandaShoot {
 	lcd.println(DriverStationLCD.Line.kUser2, 1, "" + rotaryJag.get());
 	lcd.updateLCD();
 	*/
+	//crioOut("PandaShoot");
 	camJag.set(joystick.getY());
-	
+	/*
 	if (joystick.getTrigger()) {
 	    // Turn the hopper
 	    hopperJag.set(-0.9);
 	    //may want to introduce a time delay here to prevent rapid fire frisbees
 	} else {
 	    hopperJag.set(0);
+	}
+	*/
+	trigger = joystick.getTrigger();
+	
+	if (trigger) {
+	    if (running) {
+		if (time > 0) {
+		    time -= clock.get();
+		} else {
+		    hopperJag.set(0);
+		    running = false;
+		    delay = true;
+		    time = 500000;
+		}
+	    } else {
+		if (delay) {
+		    if (time > 0) {
+			time -= clock.get();
+		    } else {
+			delay = false;
+			time = 500000;
+			hopperJag.set(1);
+			running = true;
+		    }
+		} else {
+		    hopperJag.set(1);
+		    running = true;
+		    time = 500000;
+		}
+	    }
+	} else {
+	    if (running) {
+		if (time > 0) {
+		    time -= clock.get();
+		} else {
+		    hopperJag.set(0);
+		    running = false;
+		    time = 500000;
+		    delay = true;
+		}
+	    }
+	    if (delay) {
+		if (time > 0) {
+		    time -= clock.get();
+		} else {
+		    delay = false;
+		    time = 500000;
+		}
+	    }
 	}
 	
 	//using twist on joy2 as a 'switch' for the rotaryJag
@@ -81,12 +136,11 @@ public class PandaShoot {
 		spinDownTime = 1;
 		rotaryJag.set(0);
 	    }
-	    
 	 }
     */
     }
     public void crioOut(String out) {
-	lcd = DriverStationLCD.getInstance();
+	DriverStationLCD lcd = DriverStationLCD.getInstance();
 	lcd.println(DriverStationLCD.Line.kUser2, 1, out);
 	lcd.updateLCD();
     }

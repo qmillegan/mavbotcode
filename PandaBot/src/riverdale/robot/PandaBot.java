@@ -53,11 +53,33 @@ public class PandaBot extends SimpleRobot
         while(isOperatorControl())
         {
             getWatchdog().feed();
-            Timer.delay(.01);
+	    /*
+            Timer.delay(1);
+	    Jaguar one = new Jaguar(1);
+	    one.set(1.0);
+	    Jaguar two = new Jaguar(2);
+	    two.set(1.0);
+	    Jaguar three = new Jaguar(3);
+	    three.set(1.0);
+	    Jaguar four = new Jaguar(4);
+	    four.set(1.0);
+	    Jaguar five = new Jaguar(5);
+	    five.set(1.0);
+	    Jaguar six = new Jaguar(6);
+	    six.set(1.0);
+	    Jaguar seven = new Jaguar(7);
+	    seven.set(1.0);
+	    Jaguar eight = new Jaguar(8);
+	    eight.set(1.0);
+	    Jaguar nine = new Jaguar(9);
+	    nine.set(1.0);
+	    Jaguar ten = new Jaguar(10);
+	    ten.set(1.0);
+	    */
             //give the drive train a turn
             pandaDrive.drive();
             //give the lifter a turn
-	   // pandaLift.step();
+	    pandaLift.step();
             //give the shooter a turn
 	    pandaShoot.step();
         }
