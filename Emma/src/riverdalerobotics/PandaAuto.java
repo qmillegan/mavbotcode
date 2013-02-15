@@ -9,6 +9,7 @@ package riverdalerobotics;
  * @author FIRST
  */
 public class PandaAuto {
+    
     private PandaDrive train;
     private PandaShoot shooter;
     private PandaLift lifter;
@@ -19,8 +20,5 @@ public class PandaAuto {
 	this.lifter = lifter;
     }
     
-    public void step() {
-	//do autonomous stuff
-    }
     
 }
