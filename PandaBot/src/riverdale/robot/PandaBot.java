@@ -28,15 +28,15 @@ public class PandaBot extends SimpleRobot
         m_driveJoystick = new Joystick(1);
         m_shootJoystick = new Joystick(2);
 	
-        m_leftFrontMotor = new Jaguar(2);
-        m_rightFrontMotor = new Jaguar(6);
+        m_leftFrontMotor = new Jaguar(3);
+        m_rightFrontMotor = new Jaguar(7);
 
-	m_liftLeftJag = new Jaguar(5);
-	m_liftRightJag = new Jaguar(7);
+	m_liftLeftJag = new Jaguar(10);
+	m_liftRightJag = new Jaguar(4);
 	
-	m_shootRotary = new Jaguar(8);
-	m_shootHopper = new Jaguar(9);
-	m_camJag = new Jaguar(4);
+	m_shootRotary = new Jaguar(2);
+	m_shootHopper = new Jaguar(5);
+	m_camJag = new Jaguar(6);
 	
         pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
 	pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
