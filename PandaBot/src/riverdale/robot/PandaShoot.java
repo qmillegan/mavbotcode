@@ -16,10 +16,9 @@ public class PandaShoot {
     private Jaguar hopperJag;
     private Jaguar camJag;
     private Joystick joystick;
-    private boolean running = false;
-    private boolean delay = false;
-    private boolean trigger = false;
-    private double time = 5000000;
+    private DriverStationLCD lcd = DriverStationLCD.getInstance();
+    private Timer timer = new Timer();
+    
     /*
     private double delay = 1000000;
     private double timeStarted = 0;
@@ -27,26 +26,84 @@ public class PandaShoot {
     private double spinDownTime = 1;
     // spinDownTime tracks how long until the shooter motor needs to stop
     private boolean running = true;
+    private boolean running = false;
+    private boolean delay = false;
+    private boolean trigger = false;
+    private double time = 750000;
+    private double lastTime = timer.get();
+    private double timeLeft = 750000;
     */
-    Timer clock = new Timer();
+    final int offState = 0;
+    final int spinningState = 1;
+    final int shootingState = 2;
+    final int delayState = 3;
+    int m_state = offState;
+    double m_endTime = 0;
 
     PandaShoot(Jaguar rotaryJag, Jaguar hopperJag, Jaguar camJag, Joystick joystick) {
         this.rotaryJag = rotaryJag;
 	this.hopperJag = hopperJag;
 	this.camJag = camJag;
 	this.joystick = joystick;
-	clock.start();
+	timer.start();
     }
     
     public void step() {
-	//possibly use joystick.getY() to change teh cam angle?
-	/*lcd = DriverStationLCD.getInstance();
-	lcd.println(DriverStationLCD.Line.kUser2, 1, "" + rotaryJag.get());
-	lcd.updateLCD();
-	*/
-	//crioOut("PandaShoot");
 	camJag.set(joystick.getY());
-	/*
+	switch (m_state)
+	{
+	    case offState:
+		rotaryJag.set(0);
+		if (joystick.getRawButton(10) && !joystick.getRawButton(11)) {
+		    hopperJag.set(0.25);
+		} else if (!joystick.getRawButton(10) && joystick.getRawButton(11)) {
+		    hopperJag.set(-0.25);
+		} else {
+		    hopperJag.set(0);
+		}
+		if (joystick.getTrigger())
+		{
+		    m_state = spinningState;
+		    m_endTime = timer.get() + 0.2;
+		    rotaryJag.set(1);
+		}
+		break;
+	    case spinningState:
+		if (timer.get() > m_endTime)
+		{
+		    m_state = shootingState;
+		    m_endTime = timer.get() + 0.71;
+		    hopperJag.set(1);
+		}
+		break;
+	    case shootingState:
+		crioOut("Time left: " + (timer.get() - m_endTime));
+		if (timer.get() > m_endTime)
+		{
+		    if (joystick.getTrigger()) {
+			m_endTime = timer.get() + 0.71;
+		    } else {
+			m_state = delayState;
+			m_endTime = timer.get() + 0.2;
+			hopperJag.set(0);
+		    }
+		}
+		break;
+	    case delayState:
+		if (timer.get() > m_endTime)
+		{
+		    m_state = offState;
+		}
+		break;
+	}
+    }
+    public void crioOut(String out) {
+	lcd.println(DriverStationLCD.Line.kUser2, 1, out);
+	lcd.updateLCD();
+    }
+    
+    public void deadCode() {
+		/*
 	if (joystick.getTrigger()) {
 	    // Turn the hopper
 	    hopperJag.set(-0.9);
@@ -54,103 +111,19 @@ public class PandaShoot {
 	} else {
 	    hopperJag.set(0);
 	}
-	*/
-	trigger = joystick.getTrigger();
-	
-	if (trigger) {
-	    if (running) {
-		if (time > 0) {
-		    // Trigger pulled, hopper spinning, hopper timer not expired
-		    time -= clock.get();
-		} else {
-		    // Trigger pulled, hopper spinning, hopper timer expired
-		    hopperJag.set(0);
-		    running = false;
-		    delay = true;
-		    time = 500000;
-		}
-	    } else {
-		if (delay) {
-		    if (time > 0) {
-			// Trigger pulled, hopper off, delay timer not expired
-			time -= clock.get();
-		    } else {
-			// Trigger pulled, hopper off, delay timer expired
-			delay = false;
-			time = 500000;
-			hopperJag.set(1);
-			running = true;
-		    }
-		} else {
-		    // Trigger pulled, hopper off, delay off
-		    hopperJag.set(1);
-		    running = true;
-		    time = 500000;
-		}
-	    }
+	// // //
+	if (joystick.getTrigger()) {
+	    hopperJag.set(1.0);
 	} else {
-	    if (running) {
-		if (time > 0) {
-		    // Trigger released, hopper running, hopper timer not expired
-		    time -= clock.get();
-		} else {
-		    // Trigger released, hopper running, hopper timer expired
-		    hopperJag.set(0);
-		    running = false;
-		    time = 500000;
-		    delay = true;
-		}
-	    }
-	    if (delay) {    
-		if (time > 0) {
-		    // Trigger released, delay on, delay timer not expired
-		    time -= clock.get();
-		} else {
-		    // Trigger released, delay on, delay timer expired
-		    delay = false;
-		    time = 500000;
-		}
-	    }
+	    hopperJag.set(0);
 	}
 	
-	//using twist on joy2 as a 'switch' for the rotaryJag
 	if (joystick.getTwist() <= 0) {
-	    // Turn the hopper
-	    //double d = joystick.getTwist();
-	    //crioOut(""+d);
 	    rotaryJag.set(1.0);
 	    //may want to introduce a time delay here to prevent rapid fire frisbees
 	} else {
 	    rotaryJag.set(0);
 	}
-	//Sorry grant, and thanks for letting me recycle some of your code. 
-	/*
-	if (joystick.getTrigger() && !running) {
-	    // Turn the hopper
-	    running = true;
-	    timeStarted = clock.get();
-	    rotaryJag.set(0.9);
-	    hopperJag.set(1.0);
-	} else if (!joystick.getTrigger() && running) {
-	    // Stop the hopper motor and spin down the shooter motor
-	    hopperJag.set(0);
-	    if (spinDownTime > 0) {
-		// If the spin time is greater then zero, then the shooter motor
-		// is still spinning, so decrement the counter and continue
-		spinDownTime -= (clock.get() - timeStarted);
-	    } else {
-		// If the spin time is lesser than or equal to zero, then stop
-		// the spin motor and reset the spin time counter
-		running = false;
-		spinDownTime = 1;
-		rotaryJag.set(0);
-	    }
-	 }
-    */
-    }
-    public void crioOut(String out) {
-	DriverStationLCD lcd = DriverStationLCD.getInstance();
-	lcd.println(DriverStationLCD.Line.kUser2, 1, out);
-	lcd.updateLCD();
+	*/
     }
 }
