@@ -19,6 +19,12 @@ public class PandaAuto {
 	this.shooter = shooter;
 	this.lifter = lifter;
     }
+    public void step(){
+	//do autonomous stuff
+        double num = 0;
+        while(num!=4){
+            shooter.step();
+            num = num + 1;
+    }   
     
-    
-}
+}}
