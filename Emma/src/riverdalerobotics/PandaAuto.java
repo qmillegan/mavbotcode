@@ -6,7 +6,7 @@ package riverdalerobotics;
 
 /**
  *
- * @author FIRST
+ * @author Quinn Millegan
  */
 public class PandaAuto {
     
@@ -20,5 +20,13 @@ public class PandaAuto {
 	this.lifter = lifter;
     }
     
-    
-}
+    public void step() {
+	//do autonomous stuff
+        double num = 0;
+        //shooting 4 frisbees
+        while(num!=4){
+            shooter.step();
+            num = num + 1;
+        
+    }
+}}
