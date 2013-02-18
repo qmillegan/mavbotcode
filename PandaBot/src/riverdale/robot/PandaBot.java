@@ -9,9 +9,7 @@ package riverdale.robot;
 
 import edu.wpi.first.wpilibj.*;
 
-public class PandaBot extends SimpleRobot
-{
-    
+public class PandaBot extends SimpleRobot {
     Joystick m_driveJoystick; //joystick 1...primarily used for driving
     Joystick m_shootJoystick; //joystick 2...used for shooting
     Jaguar m_leftFrontMotor;
@@ -22,66 +20,83 @@ public class PandaBot extends SimpleRobot
     PandaLift pandaLift;
     PandaDrive pandaDrive;
     PandaShoot pandaShoot;
+    //DriverStationLCD lcd;
     
-    protected void robotInit() 
-    {
+    /*Jaguar one;
+     * Jaguar two;
+     * Jaguar three;
+     * Jaguar four;
+     * Jaguar five;
+     * Jaguar six;
+     * Jaguar seven;
+     * Jaguar eight;
+     * Jaguar nine;
+     * Jaguar ten;*/
+    
+    protected void robotInit() {
+	/*one = new Jaguar(1);
+	 * two = new Jaguar(2);
+	 * three = new Jaguar(3);
+	 * four = new Jaguar(4);
+	 * five = new Jaguar(5);
+	 * six = new Jaguar(6);
+	 * seven = new Jaguar(7);
+	 * eight = new Jaguar(8);
+	 * nine = new Jaguar(9);
+	 * ten = new Jaguar(10);*/
         m_driveJoystick = new Joystick(1);
         m_shootJoystick = new Joystick(2);
 	
-        m_leftFrontMotor = new Jaguar(3);
-        m_rightFrontMotor = new Jaguar(7);
+        m_leftFrontMotor = new Jaguar(1);
+        m_rightFrontMotor = new Jaguar(6);
 
-	m_liftLeftJag = new Jaguar(10);
-	m_liftRightJag = new Jaguar(4);
+	m_liftLeftJag = new Jaguar(9);
+	m_liftRightJag = new Jaguar(10);
 	
 	m_shootRotary = new Jaguar(2);
 	m_shootHopper = new Jaguar(5);
-	m_camJag = new Jaguar(6);
+	m_camJag = new Jaguar(3);
 	
         pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
 	pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
 	pandaShoot = new PandaShoot(m_shootRotary, m_shootHopper, m_camJag, m_shootJoystick);
     }
     
-    public void autonomous() 
-    {
-        
+    public void autonomous() {
     }
 
-    public void operatorControl() 
-    {
+    public void operatorControl() {
+	//int num = 0;
+	//testDigitalSidecar(0.5);
         while(isOperatorControl())
         {
+	    //num++;
             getWatchdog().feed();
-	    /*
-            Timer.delay(1);
-	    Jaguar one = new Jaguar(1);
-	    one.set(1.0);
-	    Jaguar two = new Jaguar(2);
-	    two.set(1.0);
-	    Jaguar three = new Jaguar(3);
-	    three.set(1.0);
-	    Jaguar four = new Jaguar(4);
-	    four.set(1.0);
-	    Jaguar five = new Jaguar(5);
-	    five.set(1.0);
-	    Jaguar six = new Jaguar(6);
-	    six.set(1.0);
-	    Jaguar seven = new Jaguar(7);
-	    seven.set(1.0);
-	    Jaguar eight = new Jaguar(8);
-	    eight.set(1.0);
-	    Jaguar nine = new Jaguar(9);
-	    nine.set(1.0);
-	    Jaguar ten = new Jaguar(10);
-	    ten.set(1.0);
-	    */
+	    //lcd = DriverStationLCD.getInstance();
+	    //lcd.println(DriverStationLCD.Line.kUser2, 1, "" + num);
+	    //lcd.updateLCD();
+
             //give the drive train a turn
-            pandaDrive.drive();
+	    pandaDrive.drive();
             //give the lifter a turn
-	    pandaLift.step();
+	    //pandaLift.step();
             //give the shooter a turn
-	    pandaShoot.step();
+	    //pandaShoot.step();
+	    // Take a short rest
+	    Timer.delay(0.01);
         }
     }
+    
+    /*public void testDigitalSidecar(double speed) {
+     * one.set(speed);
+     * two.set(speed);
+     * three.set(speed);
+     * four.set(speed);
+     * five.set(speed);
+     * six.set(speed);
+     * seven.set(speed);
+     * eight.set(speed);
+     * nine.set(speed);
+     * ten.set(speed);
+     * }*/
 }

@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package riverdale.robot;
 
-/**
- *
- * @author FIRST
+/*
+ * @author Quinn
  */
 public class PandaAuto {
     
@@ -20,11 +15,12 @@ public class PandaAuto {
 	this.lifter = lifter;
     }
     public void step(){
-	//do autonomous stuff
+	//do autonomous stuff 
+	//QUINN's
         double num = 0;
-        while(num!=4){
+        while (num != 4) {
             shooter.step();
+	    //adding 1 to the number,until it fires four frisbees
             num = num + 1;
-    }   
-    
+    }
 }}

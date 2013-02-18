@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package riverdale.robot;
 
 import edu.wpi.first.wpilibj.*;
 
 /*
- *
- * @author Grant Vesely
+ * @author Grant, Mr. Morris, Quinn
  */
 
 public class PandaShoot {
@@ -18,6 +13,12 @@ public class PandaShoot {
     private Joystick joystick;
     private DriverStationLCD lcd = DriverStationLCD.getInstance();
     private Timer timer = new Timer();
+    final int offState = 0;
+    final int spinningState = 1;
+    final int shootingState = 2;
+    final int delayState = 3;
+    int m_state = offState;
+    double m_endTime = 0;
     
     /*
     private double delay = 1000000;
@@ -33,12 +34,6 @@ public class PandaShoot {
     private double lastTime = timer.get();
     private double timeLeft = 750000;
     */
-    final int offState = 0;
-    final int spinningState = 1;
-    final int shootingState = 2;
-    final int delayState = 3;
-    int m_state = offState;
-    double m_endTime = 0;
 
     PandaShoot(Jaguar rotaryJag, Jaguar hopperJag, Jaguar camJag, Joystick joystick) {
         this.rotaryJag = rotaryJag;
@@ -49,9 +44,21 @@ public class PandaShoot {
     }
     
     public void step() {
-	camJag.set(joystick.getY());
-	switch (m_state)
-	{
+	double time = timer.get();
+	// This code pulses the cam 
+	// It does pulses per second 
+	final double pulsesPerSecond = 7.0;
+	// 1 / slices is the off time of the pulse
+	final int slices = 3;
+	int freq = (int) (time * pulsesPerSecond);
+	if ((freq % slices) == 0) {
+	    crioOut("Cam Off");
+	    camJag.set(0);
+	} else {
+	    crioOut("Cam On" + joystick.getY());
+	    camJag.set(joystick.getY());
+	}
+	switch (m_state) {  
 	    case offState:
 		rotaryJag.set(0);
 		if (joystick.getRawButton(10) && !joystick.getRawButton(11)) {
@@ -61,25 +68,21 @@ public class PandaShoot {
 		} else {
 		    hopperJag.set(0);
 		}
-		if (joystick.getTrigger())
-		{
+		if (joystick.getTrigger()) {
 		    m_state = spinningState;
 		    m_endTime = timer.get() + 0.2;
 		    rotaryJag.set(1);
 		}
 		break;
 	    case spinningState:
-		if (timer.get() > m_endTime)
-		{
+		if (timer.get() > m_endTime) {
 		    m_state = shootingState;
 		    m_endTime = timer.get() + 0.71;
 		    hopperJag.set(1);
 		}
 		break;
 	    case shootingState:
-		crioOut("Time left: " + (timer.get() - m_endTime));
-		if (timer.get() > m_endTime)
-		{
+		if (timer.get() > m_endTime) {
 		    if (joystick.getTrigger()) {
 			m_endTime = timer.get() + 0.71;
 		    } else {
@@ -90,8 +93,7 @@ public class PandaShoot {
 		}
 		break;
 	    case delayState:
-		if (timer.get() > m_endTime)
-		{
+		if (timer.get() > m_endTime) {
 		    m_state = offState;
 		}
 		break;
@@ -100,30 +102,5 @@ public class PandaShoot {
     public void crioOut(String out) {
 	lcd.println(DriverStationLCD.Line.kUser2, 1, out);
 	lcd.updateLCD();
-    }
-    
-    public void deadCode() {
-		/*
-	if (joystick.getTrigger()) {
-	    // Turn the hopper
-	    hopperJag.set(-0.9);
-	    //may want to introduce a time delay here to prevent rapid fire frisbees
-	} else {
-	    hopperJag.set(0);
-	}
-	// // //
-	if (joystick.getTrigger()) {
-	    hopperJag.set(1.0);
-	} else {
-	    hopperJag.set(0);
-	}
-	
-	if (joystick.getTwist() <= 0) {
-	    rotaryJag.set(1.0);
-	    //may want to introduce a time delay here to prevent rapid fire frisbees
-	} else {
-	    rotaryJag.set(0);
-	}
-	*/
     }
 }

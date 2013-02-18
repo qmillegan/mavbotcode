@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package riverdale.robot;
 
 import edu.wpi.first.wpilibj.*;
+import java.lang.Math;
 
 /**
  * reer
@@ -22,8 +19,7 @@ public class PandaDrive {
     RobotDrive drive;
     double c_state;
     double p_state;
-    double speed;
-    DriverStationLCD lcd;
+    double yVal;
     int sc;
     
     
@@ -36,22 +32,26 @@ public class PandaDrive {
 	
 	//logan's crutch
 	drive = new RobotDrive(jagLeft, jagRight);
+	drive.setSafetyEnabled(false);
 	
 	//quinnard's stuff
 	c_state =  0.0;
 	p_state = 0.0;
-	speed = 0.0;
+	yVal = 0.0;
 	//slowing coefficient..higher is slower
 	sc = 50;
     }
-    public void drive(){
-        /*
+    public void drive()
+    {
+	//crioOut("Drive!");
+        
+        //double yVal = joystick.getY();
+	/*
 	final double maxAccel = 0.06;
-        double speed = joystick.getY(); 
         double time = timer.get();
         //acceleration calculation, etc.
         double timeDif = time-lastTime;
-        double speedDif = speed-lastSpeed;
+        double speedDif = yVal-lastSpeed;
         accel = speedDif/timeDif;
         if(timeDif == 0 && speedDif == 0)
             accel = 0;
@@ -61,44 +61,45 @@ public class PandaDrive {
         //checking to see if the acceleration is too high
         double oldLastSpeed = lastSpeed;
         lastTime = time;
-        lastSpeed = speed;
+        lastSpeed = yVal;
         if(Math.abs(accel) > maxAccel){
             double newTimeDif = maxAccel*timeDif;
             double newSpeed = newTimeDif+oldLastSpeed;
-            speed = newSpeed;
+            yVal = newSpeed;
         } 
-        //jagRight.set(speed);
-        //jagLeft.set(speed);
+        //jagRight.set(yVal);
+        //jagLeft.set(yVal);
 	 
-        arcadeDrive(speed, joystick.getX());
+        arcadeDrive(yVal, joystick.getX());
 	*/
 	
 	//quinnard's controlled acceleration thing
-	//c_state = joystick y axis
-	
 	c_state =  joystick.getY();
-	//p_state = robot speed...let it approach c_state at a certain increment
+	//p_state = robot yVal...let it approach c_state at a certain increment
 	p_state = p_state+((c_state-p_state)/sc);
-	speed = p_state;
-	//crioOut(speed+"");
+	yVal = p_state;
+	//crioOut(yVal+"");
 	
-	drive.setMaxOutput(0.5);
-	//get speed from joystick rotary controller thing
-	drive.setMaxOutput(1-((joystick.getTwist()+1)/2));
+	//get yVal from joystick rotary controller thing
+	//drive.setMaxOutput(1-((joystick.getTwist()+1)/2));
 	//check if it's turbo time
-	if (joystick.getTrigger() == true) {
-	    //fire lazors
-	    drive.setMaxOutput(5);
-	}
+	//if (joystick.getTrigger() == true) 
+	//{
+	//    //fire lazors
+	//    drive.setMaxOutput(5);
+	//}
 	
 	
 	//logan's crutch...might want to use the (glorious) arcadeDrive function instead
-	drive.arcadeDrive(speed, -joystick.getX());
-
+	//double xVal = -joystick.getX();
+	//yVal *= 0.5;
+	//xVal *= 0.5;
+	//crioOut("XY " + xVal + " : " + yVal);
+	drive.arcadeDrive(yVal, -joystick.getX());
 }
-    
 
-    public void arcadeDrive(double moveValue, double rotateValue) {
+    public void arcadeDrive(double moveValue, double rotateValue) 
+    {
         boolean squaredInputs = true;
         // local variables to hold the computed PWM values for the motors
         double leftMotorSpeed;
@@ -140,12 +141,29 @@ public class PandaDrive {
         }
 
         //setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
-         jagRight.set(rightMotorSpeed);
-        jagLeft.set(leftMotorSpeed);
-   }
+	double getY = joystick.getY();
+	double getX = joystick.getX();
+	//JOYSTICK DEADZONE IF/ELSE STATEMENT -----------------------------------//---------------------------------// //
+	if (getY < 0.005 && getX < 0.005) {
+	    jagRight.set(0);
+	    jagLeft.set(0);
+	} else {
+	    jagRight.set(rightMotorSpeed);
+	    jagLeft.set(leftMotorSpeed);
+	}
+    }
     public void crioOut(String out) {
-	lcd = DriverStationLCD.getInstance();
-	lcd.println(DriverStationLCD.Line.kUser2, 1, out);
-	lcd.updateLCD();
+	DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 2, out);
+	DriverStationLCD.getInstance().updateLCD();
+    }
+    public void grantDrive(double joystickX, double joystickY, double maxSpeed) {
+	// A highly experimental (and top-secret!) re-implementation of arcadeDrive
+	boolean squareIt = true;
+	if (squareIt) {
+	joystickX = (joystickX * joystickX * joystickX) / Math.abs(joystickX);
+	joystickY = (joystickY * joystickY * joystickY) / Math.abs(joystickY);
+	}
+	jagLeft.set(Math.min(joystickY - joystickX, maxSpeed));
+	jagLeft.set(Math.min(joystickY + joystickX, maxSpeed));
     }
 }
