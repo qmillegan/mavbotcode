@@ -50,15 +50,15 @@ public class PandaBot extends SimpleRobot {
         m_leftFrontMotor = new Jaguar(1);
         m_rightFrontMotor = new Jaguar(6);
 
-	m_liftLeftJag = new Jaguar(9);
-	m_liftRightJag = new Jaguar(10);
+	//m_liftLeftJag = new Jaguar(9);
+	//m_liftRightJag = new Jaguar(10);
 	
-	m_shootRotary = new Jaguar(2);
-	m_shootHopper = new Jaguar(5);
-	m_camJag = new Jaguar(3);
+	m_shootRotary = new Jaguar(7);
+	m_shootHopper = new Jaguar(2);
+	m_camJag = new Jaguar(8);
 	
         pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
-	pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
+	//pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
 	pandaShoot = new PandaShoot(m_shootRotary, m_shootHopper, m_camJag, m_shootJoystick);
     }
     
@@ -81,7 +81,7 @@ public class PandaBot extends SimpleRobot {
             //give the lifter a turn
 	    //pandaLift.step();
             //give the shooter a turn
-	    //pandaShoot.step();
+	    pandaShoot.step();
 	    // Take a short rest
 	    Timer.delay(0.01);
         }

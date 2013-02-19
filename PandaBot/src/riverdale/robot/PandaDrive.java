@@ -95,7 +95,7 @@ public class PandaDrive {
 	//yVal *= 0.5;
 	//xVal *= 0.5;
 	//crioOut("XY " + xVal + " : " + yVal);
-	drive.arcadeDrive(yVal, -joystick.getX());
+	drive.arcadeDrive(-joystick.getX(), yVal);
 }
 
     public void arcadeDrive(double moveValue, double rotateValue) 
@@ -156,14 +156,14 @@ public class PandaDrive {
 	DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 2, out);
 	DriverStationLCD.getInstance().updateLCD();
     }
-    public void grantDrive(double joystickX, double joystickY, double maxSpeed) {
+    public void grantDrive(double joystickX, double joystickY) {
 	// A highly experimental (and top-secret!) re-implementation of arcadeDrive
 	boolean squareIt = true;
 	if (squareIt) {
 	joystickX = (joystickX * joystickX * joystickX) / Math.abs(joystickX);
 	joystickY = (joystickY * joystickY * joystickY) / Math.abs(joystickY);
 	}
-	jagLeft.set(Math.min(joystickY - joystickX, maxSpeed));
-	jagLeft.set(Math.min(joystickY + joystickX, maxSpeed));
+	jagLeft.set(joystickY - joystickX);
+	jagLeft.set(joystickY + joystickX);
     }
 }

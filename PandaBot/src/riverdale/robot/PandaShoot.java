@@ -70,7 +70,7 @@ public class PandaShoot {
 		}
 		if (joystick.getTrigger()) {
 		    m_state = spinningState;
-		    m_endTime = timer.get() + 0.2;
+		    m_endTime = timer.get() + 0.6;
 		    rotaryJag.set(1);
 		}
 		break;
