@@ -17,6 +17,7 @@ public class PandaShoot {
     final int spinningState = 1;
     final int shootingState = 2;
     final int delayState = 3;
+    final int altShoot = 4;
     int m_state = offState;
     double m_endTime = 0;
     

@@ -95,7 +95,9 @@ public class PandaDrive {
 	//yVal *= 0.5;
 	//xVal *= 0.5;
 	//crioOut("XY " + xVal + " : " + yVal);
-	drive.arcadeDrive(-joystick.getX(), yVal);
+	drive.arcadeDrive(joystick.getX(), yVal);
+	
+	
 }
 
     public void arcadeDrive(double moveValue, double rotateValue) 
