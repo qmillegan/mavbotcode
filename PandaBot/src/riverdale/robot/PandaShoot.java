@@ -20,6 +20,7 @@ public class PandaShoot {
     final int altShoot = 4;
     int m_state = offState;
     double m_endTime = 0;
+    double sEndTime = 0;
     
     /*
     private double delay = 1000000;
@@ -42,6 +43,13 @@ public class PandaShoot {
 	this.camJag = camJag;
 	this.joystick = joystick;
 	timer.start();
+    }
+    public void shoot(){
+        sEndTime = timer.get() + 0.71;
+        hopperJag.set(1);
+        if(timer.get() > sEndTime){
+            hopperJag.set(0);
+        }
     }
     
     public void step() {
