@@ -63,7 +63,7 @@ public class PandaBot extends SimpleRobot {
 	pandaShoot = new PandaShoot(m_shootRotary, m_shootHopper, m_camJag, m_shootJoystick);
 	pandaAltShoot = new PandaAltShoot(m_shootRotary, m_shootHopper, m_camJag, m_shootJoystick);
     }
-    
+
     public void autonomous() {
     }
 
@@ -94,7 +94,7 @@ public class PandaBot extends SimpleRobot {
 	    Timer.delay(0.01);
         }
     }
-    
+
     /*public void testDigitalSidecar(double speed) {
      * one.set(speed);
      * two.set(speed);

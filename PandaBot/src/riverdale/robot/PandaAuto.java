@@ -13,6 +13,7 @@ public class PandaAuto {
     private Jaguar rotaryJag;
     private Jaguar hopperJag;
     private Timer timer = new Timer();
+    private int i = 0;
     double sEndTime = 0;
     double sEndTime2= 0;
     double num=0;
@@ -25,27 +26,22 @@ public class PandaAuto {
         this.rotaryJag = rotaryJag;
 	this.hopperJag = hopperJag;
     }
+    
+    public void execute() {
+	
+    }
+    
     public void step(){
 	//do autonomous stuff 
         sEndTime = timer.get() + 0.6;
         //starting rotary jag
         rotaryJag.set(1);
-        if(timer.get() > sEndTime){
-            //starting hopper after sEndTime has passed
-            sEndTime = timer.get() + delayTime;
-            shooter.shoot();
-            if(timer.get() > sEndTime){
-                sEndTime = timer.get() + delayTime;
-                shooter.shoot();
-                    if(timer.get() > sEndTime){
-                        sEndTime = timer.get() + delayTime;
-                        shooter.shoot();
-                            if(timer.get() > sEndTime){
-                                sEndTime = timer.get() + delayTime;
-                                shooter.shoot();
-                                rotaryJag.set(0);
-            }
-            }
-            }
+	while (i != 4) {
+	    if(timer.get() > sEndTime){  
+		sEndTime = timer.get() + delayTime;
+		shooter.shoot();
+		i++;
+	    }
+	}
     }
-}}
+}
