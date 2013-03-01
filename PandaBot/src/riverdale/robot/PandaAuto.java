@@ -3,7 +3,7 @@ package riverdale.robot;
 import edu.wpi.first.wpilibj.*;
 
 /*
- * @author Quinn
+ * @author Quinnard
  */
 public class PandaAuto {
     
@@ -28,9 +28,17 @@ public class PandaAuto {
     }
     
     public void execute() {
-	
+	sEndTime = timer.get() + 2.0;
+	rotaryJag.set(1);
+	while(sEndTime > timer.get()) {
+	    //getWatchdog().feed();
+	    Watchdog.getInstance().feed();
+	}
+	for (int i = 0; i < 4; i++) {
+	    shooter.shoot();
+	}
     }
-    
+    /*
     public void step(){
 	//do autonomous stuff 
         sEndTime = timer.get() + 0.6;
@@ -44,4 +52,5 @@ public class PandaAuto {
 	    }
 	}
     }
+    */
 }

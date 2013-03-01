@@ -21,6 +21,7 @@ public class PandaBot extends SimpleRobot {
     PandaDrive pandaDrive;
     PandaShoot pandaShoot;
     PandaAltShoot pandaAltShoot;
+    PandaAuto pandaAuto;
     //DriverStationLCD lcd;
     
     /*Jaguar one;
@@ -48,8 +49,8 @@ public class PandaBot extends SimpleRobot {
         m_driveJoystick = new Joystick(1);
         m_shootJoystick = new Joystick(2);
 	
-        m_leftFrontMotor = new Jaguar(1);
-        m_rightFrontMotor = new Jaguar(6);
+        m_leftFrontMotor = new Jaguar(4); //1
+        m_rightFrontMotor = new Jaguar(5);  //6
 
 	//m_liftLeftJag = new Jaguar(9);
 	//m_liftRightJag = new Jaguar(10);
@@ -58,6 +59,7 @@ public class PandaBot extends SimpleRobot {
 	m_shootHopper = new Jaguar(2);
 	m_camJag = new Jaguar(8);
 	
+	pandaAuto = new PandaAuto(pandaDrive, pandaShoot, pandaLift, m_camJag, m_camJag);
         pandaDrive = new PandaDrive(m_leftFrontMotor, m_rightFrontMotor, m_driveJoystick);
 	//pandaLift = new PandaLift(m_liftLeftJag, m_liftRightJag, m_driveJoystick);
 	pandaShoot = new PandaShoot(m_shootRotary, m_shootHopper, m_camJag, m_shootJoystick);
@@ -65,6 +67,7 @@ public class PandaBot extends SimpleRobot {
     }
 
     public void autonomous() {
+	pandaAuto.execute();
     }
 
     public void operatorControl() {
