@@ -3,7 +3,7 @@ package riverdale.robot;
 import edu.wpi.first.wpilibj.*;
 
 /*
- * @author Quinnard
+ * @author Quinnardo
  */
 public class PandaAuto {
     
