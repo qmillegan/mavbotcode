@@ -9,9 +9,9 @@ package riverdalerobotics;
 public class Joystick
 {
 
-    private javax.swing.JSlider m_xSlider;
-    private javax.swing.JSlider m_ySlider;
     private final javax.swing.JToggleButton[] m_buttons;
+    private final javax.swing.JToggleButton m_trigger;
+    private final JoystickWidget m_joystick;
 
     /**
      * Construct an instance of a joystick.
@@ -21,9 +21,9 @@ public class Joystick
      */
     public Joystick(final int port) 
     {
-        m_xSlider = EmmaGui.m_emmaGui.getXSlider(port);
-        m_ySlider = EmmaGui.m_emmaGui.getYSlider(port);
         m_buttons = EmmaGui.m_emmaGui.getButtons(port);
+        m_trigger = EmmaGui.m_emmaGui.getTrigger(port);
+        m_joystick = EmmaGui.m_emmaGui.getJoystick(port);
     }
 
     public boolean getRawButton(final int button) 
@@ -34,7 +34,7 @@ public class Joystick
     
     public boolean getTrigger() 
     {
-        return true;
+        return m_trigger.isSelected();
     }
 
     /**
@@ -43,12 +43,12 @@ public class Joystick
      */
     public final double getX() 
     {
-        return ((double) (m_xSlider.getValue() - m_xSlider.getMaximum())) / m_xSlider.getMaximum() + 0.5;
+        return m_joystick.getStickX();
     }
 
     public final double getY() 
     {
-        return ((double) (m_ySlider.getValue() - m_xSlider.getMaximum())) / m_ySlider.getMaximum() + 0.5;
+        return m_joystick.getStickY();
     }
 
 }

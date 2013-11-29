@@ -22,13 +22,7 @@ public class EmmaGui extends javax.swing.JFrame
     private void initComponents() {
 
         m_modeGroup = new javax.swing.ButtonGroup();
-        m_rightJoystickXSlider = new javax.swing.JSlider();
         m_leftJoystickXLabel = new javax.swing.JLabel();
-        m_leftJoystickYLabel = new javax.swing.JLabel();
-        m_leftJoystickYSlider = new javax.swing.JSlider();
-        m_rightJoystickYSlider = new javax.swing.JSlider();
-        m_rightJoystickYLabel = new javax.swing.JLabel();
-        m_leftJoystickXSlider = new javax.swing.JSlider();
         m_rightJoystickLabel = new javax.swing.JLabel();
         m_leftJoystickButtonsLabel = new javax.swing.JLabel();
         m_leftJoystickButton1 = new javax.swing.JToggleButton();
@@ -56,17 +50,19 @@ public class EmmaGui extends javax.swing.JFrame
         m_shootHopperJagLabel = new javax.swing.JLabel();
         m_shootHopperJagText = new javax.swing.JTextField();
         m_shootRotaryJagLabel = new javax.swing.JLabel();
+        m_shootRotaryJagLabel1 = new javax.swing.JLabel();
+        m_shootCamJagText = new javax.swing.JTextField();
+        m_leftJoystickTrigger = new javax.swing.JToggleButton();
+        m_rightJoystickTrigger = new javax.swing.JToggleButton();
+        leftJoystick = new riverdalerobotics.JoystickWidget();
+        rightJoystick = new riverdalerobotics.JoystickWidget();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Emma - Riverdale Robotics Emulator");
 
-        m_leftJoystickXLabel.setText("Left Joystick X");
+        m_leftJoystickXLabel.setText("Left Joystick");
 
-        m_leftJoystickYLabel.setText("Left Joystick Y");
-
-        m_rightJoystickYLabel.setText("Right Joystick Y");
-
-        m_rightJoystickLabel.setText("Right Joystick X");
+        m_rightJoystickLabel.setText("Right Joystick");
 
         m_leftJoystickButtonsLabel.setText("Left Joystick Buttons");
 
@@ -171,102 +167,166 @@ public class EmmaGui extends javax.swing.JFrame
 
         m_shootRotaryJagLabel.setText("Shoot Rotary Jag");
 
+        m_shootRotaryJagLabel1.setText("Shoot Cam Jag");
+
+        m_shootCamJagText.setText("jTextField1");
+
+        m_leftJoystickTrigger.setText("Trigger");
+        m_leftJoystickTrigger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_leftJoystickTriggerActionPerformed(evt);
+            }
+        });
+
+        m_rightJoystickTrigger.setText("Trigger");
+        m_rightJoystickTrigger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_rightJoystickTriggerActionPerformed(evt);
+            }
+        });
+
+        leftJoystick.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                leftJoystickPressed(evt);
+            }
+        });
+        leftJoystick.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                leftJoystickDrag(evt);
+            }
+        });
+
+        javax.swing.GroupLayout leftJoystickLayout = new javax.swing.GroupLayout(leftJoystick);
+        leftJoystick.setLayout(leftJoystickLayout);
+        leftJoystickLayout.setHorizontalGroup(
+            leftJoystickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
+        );
+        leftJoystickLayout.setVerticalGroup(
+            leftJoystickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 123, Short.MAX_VALUE)
+        );
+
+        rightJoystick.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rightJoystickPressed(evt);
+            }
+        });
+        rightJoystick.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                rightJoystickDrag(evt);
+            }
+        });
+
+        javax.swing.GroupLayout rightJoystickLayout = new javax.swing.GroupLayout(rightJoystick);
+        rightJoystick.setLayout(rightJoystickLayout);
+        rightJoystickLayout.setHorizontalGroup(
+            rightJoystickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+        rightJoystickLayout.setVerticalGroup(
+            rightJoystickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(m_disabledModeRadio)
-                .addGap(10, 10, 10)
-                .addComponent(m_autonomousModeRadio)
-                .addGap(10, 10, 10)
-                .addComponent(m_teleopModeRadio)
-                .addGap(18, 18, 18)
-                .addComponent(m_feedbackText, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(m_shootRotaryJagLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(m_shootRotaryJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(m_leftJoystickYLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(m_leftJoystickYSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(m_leftJoystickXLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(m_leftJoystickXSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(m_leftJoystickButtonsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(m_leftJoystickButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(m_leftJoystickButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(m_leftJoystickButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(m_leftJoystickButton4))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(m_leftLiftJagLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(m_leftLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(m_leftWheelJagLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(m_leftWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(m_leftLiftJagLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(m_leftLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(11, 11, 11)
+                                            .addComponent(m_leftJoystickButtonsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(m_leftWheelJagLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(m_leftWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                            .addComponent(m_leftJoystickButton1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(m_leftJoystickButton2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(m_leftJoystickButton3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(m_leftJoystickButton4))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(leftJoystick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(44, 44, 44)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(m_rightLiftJagLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(m_rightLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(m_rightWheelJagLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(m_rightWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(m_shootHopperJagLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(m_shootHopperJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(m_rightJoystickXSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(m_rightJoystickLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(m_rightJoystickYLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(m_rightJoystickButtonsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(m_rightJoystickLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(m_rightJoystickTrigger, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rightJoystick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(m_rightJoystickButtonsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(m_rightJoystickButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(m_rightJoystickButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(m_rightJoystickButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(m_rightJoystickButton4))
-                            .addComponent(m_rightJoystickYSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(m_rightJoystickButton3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(m_rightJoystickButton4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(m_shootRotaryJagLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(m_shootCamJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(m_rightLiftJagLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(m_rightLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(m_rightWheelJagLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(m_rightWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(m_shootHopperJagLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(m_shootHopperJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(179, 179, 179))))
+                                .addGap(20, 20, 20)
+                                .addComponent(m_disabledModeRadio))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(m_leftJoystickXLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(m_autonomousModeRadio)
+                                .addGap(10, 10, 10)
+                                .addComponent(m_teleopModeRadio)
+                                .addGap(18, 18, 18)
+                                .addComponent(m_feedbackText, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(m_leftJoystickTrigger))))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,43 +336,31 @@ public class EmmaGui extends javax.swing.JFrame
                     .addComponent(m_teleopModeRadio)
                     .addComponent(m_disabledModeRadio)
                     .addComponent(m_feedbackText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(m_leftJoystickXLabel)
-                    .addComponent(m_rightJoystickLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(m_rightJoystickXSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_leftJoystickXSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(m_rightJoystickYLabel)
-                            .addComponent(m_leftJoystickYLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(m_leftJoystickYSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(m_rightJoystickYSlider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(m_rightJoystickButtonsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(m_rightJoystickButton1)
-                            .addComponent(m_rightJoystickButton2)
-                            .addComponent(m_rightJoystickButton3)
-                            .addComponent(m_rightJoystickButton4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(m_leftJoystickButtonsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(m_leftJoystickButton1)
-                            .addComponent(m_leftJoystickButton2)
-                            .addComponent(m_leftJoystickButton3)
-                            .addComponent(m_leftJoystickButton4))))
-                .addGap(41, 41, 41)
+                    .addComponent(m_rightJoystickLabel)
+                    .addComponent(m_rightJoystickTrigger)
+                    .addComponent(m_leftJoystickTrigger))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(leftJoystick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rightJoystick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_leftJoystickButtonsLabel)
+                    .addComponent(m_rightJoystickButtonsLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_leftJoystickButton1)
+                    .addComponent(m_leftJoystickButton2)
+                    .addComponent(m_leftJoystickButton3)
+                    .addComponent(m_leftJoystickButton4)
+                    .addComponent(m_rightJoystickButton1)
+                    .addComponent(m_rightJoystickButton2)
+                    .addComponent(m_rightJoystickButton3)
+                    .addComponent(m_rightJoystickButton4))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(m_leftWheelJagLabel)
                     .addComponent(m_leftWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,17 +368,21 @@ public class EmmaGui extends javax.swing.JFrame
                     .addComponent(m_rightWheelJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(m_leftLiftJagLabel)
                     .addComponent(m_leftLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(m_rightLiftJagLabel)
-                    .addComponent(m_rightLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(m_rightLiftJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m_leftLiftJagLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(m_shootRotaryJagLabel)
                     .addComponent(m_shootHopperJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(m_shootHopperJagLabel)
                     .addComponent(m_shootRotaryJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_shootRotaryJagLabel1)
+                    .addComponent(m_shootCamJagText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 42, Short.MAX_VALUE))
         );
 
         pack();
@@ -372,6 +424,30 @@ public class EmmaGui extends javax.swing.JFrame
     {//GEN-HEADEREND:event_m_leftLiftJagTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_m_leftLiftJagTextActionPerformed
+
+    private void m_leftJoystickTriggerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_leftJoystickTriggerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_m_leftJoystickTriggerActionPerformed
+
+    private void m_rightJoystickTriggerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_rightJoystickTriggerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_m_rightJoystickTriggerActionPerformed
+
+    private void leftJoystickDrag(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leftJoystickDrag
+        leftJoystick.setXY(evt.getX(), evt.getY());
+    }//GEN-LAST:event_leftJoystickDrag
+
+    private void rightJoystickDrag(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rightJoystickDrag
+        rightJoystick.setXY(evt.getX(), evt.getY());
+    }//GEN-LAST:event_rightJoystickDrag
+
+    private void leftJoystickPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leftJoystickPressed
+        leftJoystick.setXY(evt.getX(), evt.getY());
+    }//GEN-LAST:event_leftJoystickPressed
+
+    private void rightJoystickPressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rightJoystickPressed
+        rightJoystick.setXY(evt.getX(), evt.getY());
+    }//GEN-LAST:event_rightJoystickPressed
 
     /**
      * @param args the command line arguments
@@ -418,6 +494,7 @@ public class EmmaGui extends javax.swing.JFrame
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private riverdalerobotics.JoystickWidget leftJoystick;
     private javax.swing.JRadioButton m_autonomousModeRadio;
     private javax.swing.JRadioButton m_disabledModeRadio;
     private javax.swing.JTextField m_feedbackText;
@@ -426,10 +503,8 @@ public class EmmaGui extends javax.swing.JFrame
     private javax.swing.JToggleButton m_leftJoystickButton3;
     private javax.swing.JToggleButton m_leftJoystickButton4;
     private javax.swing.JLabel m_leftJoystickButtonsLabel;
+    private javax.swing.JToggleButton m_leftJoystickTrigger;
     private javax.swing.JLabel m_leftJoystickXLabel;
-    private javax.swing.JSlider m_leftJoystickXSlider;
-    private javax.swing.JLabel m_leftJoystickYLabel;
-    private javax.swing.JSlider m_leftJoystickYSlider;
     private javax.swing.JLabel m_leftLiftJagLabel;
     private javax.swing.JTextField m_leftLiftJagText;
     private javax.swing.JLabel m_leftWheelJagLabel;
@@ -441,18 +516,19 @@ public class EmmaGui extends javax.swing.JFrame
     private javax.swing.JToggleButton m_rightJoystickButton4;
     private javax.swing.JLabel m_rightJoystickButtonsLabel;
     private javax.swing.JLabel m_rightJoystickLabel;
-    private javax.swing.JSlider m_rightJoystickXSlider;
-    private javax.swing.JLabel m_rightJoystickYLabel;
-    private javax.swing.JSlider m_rightJoystickYSlider;
+    private javax.swing.JToggleButton m_rightJoystickTrigger;
     private javax.swing.JLabel m_rightLiftJagLabel;
     private javax.swing.JTextField m_rightLiftJagText;
     private javax.swing.JLabel m_rightWheelJagLabel;
     private javax.swing.JTextField m_rightWheelJagText;
+    private javax.swing.JTextField m_shootCamJagText;
     private javax.swing.JLabel m_shootHopperJagLabel;
     private javax.swing.JTextField m_shootHopperJagText;
     private javax.swing.JLabel m_shootRotaryJagLabel;
+    private javax.swing.JLabel m_shootRotaryJagLabel1;
     private javax.swing.JTextField m_shootRotaryJagText;
     private javax.swing.JRadioButton m_teleopModeRadio;
+    private riverdalerobotics.JoystickWidget rightJoystick;
     // End of variables declaration//GEN-END:variables
 
     
@@ -476,16 +552,10 @@ public class EmmaGui extends javax.swing.JFrame
         m_feedbackText.setText(feedback);
     }
     
-    public javax.swing.JSlider getXSlider(int port)
+    public javax.swing.JToggleButton getTrigger(int port)
     {
-        return port == 1 ? m_leftJoystickXSlider : m_rightJoystickXSlider;
+        return port == 1 ? m_leftJoystickTrigger : m_rightJoystickTrigger;
     }
-
-    public javax.swing.JSlider getYSlider(int port)
-    {
-        return port == 1 ? m_leftJoystickYSlider : m_rightJoystickYSlider;
-    }
-    
     public javax.swing.JToggleButton[] getButtons(int port)
     {
         javax.swing.JToggleButton buttons[] = new javax.swing.JToggleButton[4];
@@ -506,31 +576,39 @@ public class EmmaGui extends javax.swing.JFrame
         return buttons;   
     }
     
+    JoystickWidget getJoystick(final int port)
+    {
+        return port == 1 ? leftJoystick : rightJoystick; 
+    }
     javax.swing.JTextField getJaguar(final int channel)
     {
-        if (channel == 2)
+        if (channel == 3)
         {
             return m_leftWheelJagText;
         }
-        else if (channel == 6)
+        else if (channel == 7)
         {
             return m_rightWheelJagText;
         }
-        else if (channel == 1)
+        else if (channel == 10)
         {
             return m_leftLiftJagText;
         }
-        else if (channel == 1)
+        else if (channel == 4)
         {
             return m_rightLiftJagText;
         }
-        else if (channel == 8)
+        else if (channel == 2)
         {
             return m_shootRotaryJagText;
         }
-        else if (channel == 10)
+        else if (channel == 5)
         {
             return m_shootHopperJagText;
+        }
+        else if (channel == 6)
+        {
+            return m_shootCamJagText;
         }
         return null;
     }

@@ -41,7 +41,7 @@ public class PandaBot extends SimpleRobot
 
     public void operatorControl() 
     {
-        while(isOperatorControl())
+        //while(isOperatorControl())
         {
             getWatchdog().feed();
 	    /*

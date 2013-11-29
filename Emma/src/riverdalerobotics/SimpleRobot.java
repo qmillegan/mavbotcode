@@ -81,19 +81,19 @@ public class SimpleRobot extends Thread
             Double curTime = timer.get();
             if (isDisabled()) 
             {               
-                EmmaGui.m_emmaGui.setFeedback(String.format( "Disabled %.2f", curTime/1000));
+                EmmaGui.m_emmaGui.setFeedback(String.format( "Disabled %.1f", curTime/1000));
                 disabled();
                 lastState = 0;
             } 
             else if (isAutonomous()) 
             {
-                EmmaGui.m_emmaGui.setFeedback(String.format( "Autonomous %.2f", curTime/1000));
+                EmmaGui.m_emmaGui.setFeedback(String.format( "Autonomous %.1f", curTime/1000));
                 autonomous();
                 lastState = 1;
             } 
             else 
             {
-                EmmaGui.m_emmaGui.setFeedback(String.format( "Teleop %.2f", curTime/1000));
+                EmmaGui.m_emmaGui.setFeedback(String.format( "Teleop %.1f", curTime/1000));
                 if (lastState != 2)
                     getWatchdog().feed();
                 operatorControl();

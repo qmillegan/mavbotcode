@@ -38,26 +38,13 @@ public class PandaShoot {
 	clock.start();
     }
     
-    public void step() {
-	//possibly use joystick.getY() to change teh cam angle?
-	/*lcd = DriverStationLCD.getInstance();
-	lcd.println(DriverStationLCD.Line.kUser2, 1, "" + rotaryJag.get());
-	lcd.updateLCD();
-	*/
-	//crioOut("PandaShoot");
+    public void step() 
+    {
 	camJag.set(joystick.getY());
-	/*
-	if (joystick.getTrigger()) {
-	    // Turn the hopper
-	    hopperJag.set(-0.9);
-	    //may want to introduce a time delay here to prevent rapid fire frisbees
-	} else {
-	    hopperJag.set(0);
-	}
-	*/
 	trigger = joystick.getTrigger();
-	
-	if (trigger) {
+	if (trigger) 
+        {
+            rotaryJag.set(1.0);
 	    if (running) {
 		if (time > 0) {
 		    // Trigger pulled, hopper spinning, hopper timer not expired
@@ -88,7 +75,10 @@ public class PandaShoot {
 		    time = 500000;
 		}
 	    }
-	} else {
+	} 
+        else 
+        {
+            rotaryJag.set(0.0);
 	    if (running) {
 		if (time > 0) {
 		    // Trigger released, hopper running, hopper timer not expired
@@ -112,40 +102,5 @@ public class PandaShoot {
 		}
 	    }
 	}
-	
-	//using twist on joy2 as a 'switch' for the rotaryJag
-	if (joystick.getTwist() <= 0) {
-	    // Turn the hopper
-	    //double d = joystick.getTwist();
-	    //crioOut(""+d);
-	    rotaryJag.set(1.0);
-	    //may want to introduce a time delay here to prevent rapid fire frisbees
-	} else {
-	    rotaryJag.set(0);
-	}
-	//Sorry grant, and thanks for letting me recycle some of your code. 
-	/*
-	if (joystick.getTrigger() && !running) {
-	    // Turn the hopper
-	    running = true;
-	    timeStarted = clock.get();
-	    rotaryJag.set(0.9);
-	    hopperJag.set(1.0);
-	} else if (!joystick.getTrigger() && running) {
-	    // Stop the hopper motor and spin down the shooter motor
-	    hopperJag.set(0);
-	    if (spinDownTime > 0) {
-		// If the spin time is greater then zero, then the shooter motor
-		// is still spinning, so decrement the counter and continue
-		spinDownTime -= (clock.get() - timeStarted);
-	    } else {
-		// If the spin time is lesser than or equal to zero, then stop
-		// the spin motor and reset the spin time counter
-		running = false;
-		spinDownTime = 1;
-		rotaryJag.set(0);
-	    }
-	 }
-    */
     }
 }

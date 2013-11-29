@@ -16,8 +16,8 @@ public class PandaLift {
     //private DigitalInput downSwitch; //limit switch bottom
     
     PandaLift(Jaguar jagLiftLeftPort, Jaguar jagLiftRightPort, Joystick joystick){
-        this.jagLiftLeft = jagLiftLeft;
-	this.jagLiftRight = jagLiftRight;
+        this.jagLiftLeft = jagLiftLeftPort;
+	this.jagLiftRight = jagLiftRightPort;
 	this.joystick = joystick;
         //upSwitch = new DigitalInput(upSwitchPort);
         //downSwitch = new DigitalInput(downSwitchPort);
