@@ -4,6 +4,11 @@
  */
 package riverdalerobotics;
 
+import edu.wpi.first.wpilibj.Watchdog;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Jaguar;
+
 /**
  *
  * @author Sema

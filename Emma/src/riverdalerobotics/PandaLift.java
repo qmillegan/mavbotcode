@@ -4,6 +4,9 @@
  */
 package riverdalerobotics;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Jaguar;
+
 /**
  *
  * @author FIRST

@@ -1,5 +1,10 @@
 package riverdalerobotics;
 
+import edu.wpi.first.wpilibj.SimpleRobot;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Watchdog;
+
 public class PandaBot extends SimpleRobot
 {
     
@@ -43,7 +48,7 @@ public class PandaBot extends SimpleRobot
     {
         //while(isOperatorControl())
         {
-            getWatchdog().feed();
+            Watchdog.getInstance().feed();
 	    /*
             Timer.delay(1);
 	    Jaguar one = new Jaguar(1);

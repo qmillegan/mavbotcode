@@ -3,6 +3,10 @@
  */
 package riverdalerobotics;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Jaguar;
+
 /**
  * reer
  * 
